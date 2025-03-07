@@ -1,0 +1,830 @@
+{
+    "welcome": [
+      {
+        "user": "ModeratorJane",
+        "message": "👋 Welcome to the Women Wellness Hub! We're so glad you're here. This is a safe space for women to discuss health, wellness, and life experiences.",
+        "time": "Pinned Message",
+        "avatar": "J",
+        "color": "bg-pink-500"
+      },
+      {
+        "user": "NewUser123",
+        "message": "Hi everyone! Just joined and excited to be part of this community. Looking forward to learning and sharing!",
+        "time": "10:00 AM",
+        "avatar": "N",
+        "color": "bg-blue-400"
+      }
+    ],
+    "rules": [
+      {
+        "user": "ModeratorJane",
+        "message": "📌 Our Community Guidelines: 1) Be respectful 2) No hate speech 3) Protect privacy 4) Support, don't judge",
+        "time": "Pinned Message",
+        "avatar": "J",
+        "color": "bg-pink-500"
+      },
+      {
+        "user": "CuriousCat",
+        "message": "Can someone explain more about the privacy guidelines?",
+        "time": "10:05 AM",
+        "avatar": "C",
+        "color": "bg-green-400"
+      }
+    ],
+    "general-chat": [
+      {
+        "user": "UserAlex",
+        "message": "Good morning! What’s everyone up to today?",
+        "time": "8:00 AM",
+        "avatar": "A",
+        "color": "bg-blue-400"
+      },
+      {
+        "user": "UserBeth",
+        "message": "Just enjoying my coffee and planning my day. How about you?",
+        "time": "8:05 AM",
+        "avatar": "B",
+        "color": "bg-purple-400"
+      }
+    ],
+    "daily-check-in": [
+      {
+        "user": "ModeratorJane",
+        "message": "☀️ DAILY CHECK-IN: How is everyone feeling today? Any wins or challenges you'd like to share?",
+        "time": "9:00 AM",
+        "avatar": "J",
+        "color": "bg-pink-500"
+      },
+      {
+        "user": "Rachel_W",
+        "message": "I finally got 8 hours of sleep last night after weeks of insomnia! 🎉",
+        "time": "9:10 AM",
+        "avatar": "R",
+        "color": "bg-purple-400"
+      }
+    ],
+    "book-club": [
+      {
+        "user": "BookwormAmy",
+        "message": "What did everyone think about Chapter 5 of 'The Body Keeps the Score'? The part about trauma responses really resonated with me.",
+        "time": "7:30 PM",
+        "avatar": "A",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "JenReads",
+        "message": "It was eye-opening! I never realized how much physical symptoms can be connected to past experiences. Makes me think differently about self-care.",
+        "time": "7:35 PM",
+        "avatar": "J",
+        "color": "bg-pink-400"
+      }
+    ],
+    "girls-ask-women-answer": [
+      {
+        "user": "Inquirer123",
+        "message": "Has anyone tried intermittent fasting? What was your experience?",
+        "time": "11:00 AM",
+        "avatar": "I",
+        "color": "bg-green-400"
+      },
+      {
+        "user": "ExperiencedEater",
+        "message": "Yes, I've been doing it for 6 months now. It's been great for energy levels and digestion!",
+        "time": "11:05 AM",
+        "avatar": "E",
+        "color": "bg-blue-400"
+      },
+      {
+        "user": "FitnessFanatic",
+        "message": "I've been doing 16:8 for about a year. Lost 15 pounds and feel much more focused during the day. The first two weeks were tough though!",
+        "time": "11:12 AM",
+        "avatar": "F",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "NutritionNerd",
+        "message": "Just a reminder that IF isn't for everyone! People with certain medical conditions or who are pregnant should definitely consult their doctor first.",
+        "time": "11:18 AM",
+        "avatar": "N",
+        "color": "bg-yellow-400"
+      },
+      {
+        "user": "Inquirer123",
+        "message": "Thanks for sharing! What eating window do you use? And did you have any side effects when starting?",
+        "time": "11:23 AM",
+        "avatar": "I",
+        "color": "bg-green-400"
+      },
+      {
+        "user": "MorningPerson",
+        "message": "I do 12-8pm for my eating window. The biggest challenge was giving up my late night snacks, but I sleep better now without them!",
+        "time": "11:26 AM",
+        "avatar": "M",
+        "color": "bg-pink-400"
+      },
+      {
+        "user": "ExperiencedEater",
+        "message": "I had headaches the first week, but they went away once my body adjusted. I drink lots of water during fasting hours which helps enormously.",
+        "time": "11:30 AM",
+        "avatar": "E",
+        "color": "bg-blue-400"
+      },
+      {
+        "user": "NewbieFaster",
+        "message": "I'm only 2 weeks in with 14:10. Still struggling with morning hunger but coffee helps. Has anyone combined IF with keto?",
+        "time": "11:36 AM",
+        "avatar": "N",
+        "color": "bg-red-400"
+      },
+      {
+        "user": "FitnessFanatic",
+        "message": "I did IF+keto for 3 months. Amazing results but WAY too restrictive for me long-term. Now I just do IF with balanced meals.",
+        "time": "11:42 AM",
+        "avatar": "F",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "WorkingMom",
+        "message": "I find IF helps me avoid mindless snacking during busy workdays. I eat 11am-7pm and it works with my family's schedule too.",
+        "time": "11:48 AM",
+        "avatar": "W",
+        "color": "bg-teal-400"
+      },
+      {
+        "user": "NutritionNerd",
+        "message": "Remember the quality of what you eat still matters! I've seen people assume IF means they can eat whatever during their window.",
+        "time": "11:55 AM",
+        "avatar": "N",
+        "color": "bg-yellow-400"
+      }
+    ],
+    "mental-health": [
+      {
+        "user": "Stephanie_R",
+        "message": "Does anyone have recommendations for apps that help with anxiety? My therapist suggested I try some between our sessions.",
+        "time": "11:20 AM",
+        "avatar": "S",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "AnxietyWarrior",
+        "message": "I've been using Calm for guided meditations and Daylio for mood tracking. Both have been game-changers for me!",
+        "time": "11:25 AM",
+        "avatar": "A",
+        "color": "bg-pink-400"
+      },
+      {
+        "user": "TherapyJourney",
+        "message": "Woebot has been helpful for me - it's an AI chatbot that uses CBT techniques. Great for moments when anxiety spikes and you need immediate coping tools.",
+        "time": "11:30 AM",
+        "avatar": "T",
+        "color": "bg-blue-500"
+      },
+      {
+        "user": "Stephanie_R",
+        "message": "Thanks for the suggestions! Has anyone done EMDR therapy for anxiety or trauma? My therapist recommended it but I'm nervous about what to expect.",
+        "time": "11:35 AM",
+        "avatar": "S",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "HealingHope",
+        "message": "I did EMDR for childhood trauma and it was transformative. It's intense and sometimes emotionally draining, but my therapist was careful about pacing and making sure I felt safe throughout.",
+        "time": "11:40 AM",
+        "avatar": "H",
+        "color": "bg-green-400"
+      },
+      {
+        "user": "MindfulPsychologist",
+        "message": "Therapist here! EMDR can be very effective, but make sure you have good emotional regulation skills first. Your therapist should help with establishing safety and resourcing before trauma processing.",
+        "time": "11:45 AM",
+        "avatar": "M",
+        "color": "bg-teal-500"
+      }
+    ],
+    "fitness": [
+      {
+        "user": "FitFiona",
+        "message": "Looking for a workout buddy for virtual yoga sessions. Anyone interested?",
+        "time": "6:00 AM",
+        "avatar": "F",
+        "color": "bg-green-400"
+      },
+      {
+        "user": "YogaLover",
+        "message": "I'm in! What time are you thinking?",
+        "time": "6:05 AM",
+        "avatar": "Y",
+        "color": "bg-blue-400"
+      },
+      {
+        "user": "FlexibleFriend",
+        "message": "I'd love to join too! Been wanting to establish a morning routine.",
+        "time": "6:10 AM",
+        "avatar": "F",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "FitFiona",
+        "message": "Awesome! How about 7am EST on Tuesdays and Thursdays? I found a great YouTube channel with 30-min flows perfect for beginners to intermediate.",
+        "time": "6:15 AM",
+        "avatar": "F",
+        "color": "bg-green-400"
+      },
+      {
+        "user": "StrengthSeeker",
+        "message": "Anyone here into strength training? Looking for a simple home routine - I have dumbbells and resistance bands but feeling lost on where to start.",
+        "time": "6:20 AM",
+        "avatar": "S",
+        "color": "bg-orange-400"
+      },
+      {
+        "user": "PersonalTrainerPro",
+        "message": "Happy to help! For beginners, focus on foundational movements: squats, lunges, push-ups (modified if needed), rows with bands, and overhead presses. 2-3 sets of 10-12 reps, 2-3 times weekly is a perfect start!",
+        "time": "6:25 AM",
+        "avatar": "P",
+        "color": "bg-teal-500"
+      }
+    ],
+    "job-hunting": [
+      {
+        "user": "JobSeeker",
+        "message": "Any tips for virtual interviews? I have one coming up next week.",
+        "time": "3:00 PM",
+        "avatar": "J",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "CareerCoach",
+        "message": "Make sure your background is tidy and test your tech beforehand! Good luck!",
+        "time": "3:05 PM",
+        "avatar": "C",
+        "color": "bg-pink-400"
+      }
+    ],
+    "body-positivity": [
+      {
+        "user": "Emma_J",
+        "message": "Today I wore a swimsuit to the beach for the first time in 3 years. I was so nervous but it felt amazing to just enjoy the water without worrying what others think!",
+        "time": "2:30 PM",
+        "avatar": "E",
+        "color": "bg-purple-300"
+      },
+      {
+        "user": "Michelle28",
+        "message": "Emma that's incredible! So proud of you! 💕 It's such a journey to get to that point.",
+        "time": "2:35 PM",
+        "avatar": "M",
+        "color": "bg-pink-400"
+      }
+    ],
+    "nutrition": [
+      {
+        "user": "NutriNova",
+        "message": "What are your go-to healthy snacks for busy workdays? I'm trying to avoid the office vending machine!",
+        "time": "1:15 PM",
+        "avatar": "N",
+        "color": "bg-green-500"
+      },
+      {
+        "user": "HealthyChoices",
+        "message": "I keep a stash of mixed nuts, dried fruit, and dark chocolate in my desk drawer. Perfect for that afternoon energy slump!",
+        "time": "1:18 PM",
+        "avatar": "H",
+        "color": "bg-blue-400"
+      },
+      {
+        "user": "MealPrepQueen",
+        "message": "Greek yogurt with honey and berries is my favorite! I prep several small containers on Sunday for the week ahead.",
+        "time": "1:22 PM",
+        "avatar": "M",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "NutriNova",
+        "message": "These are great ideas! Does anyone have suggestions for savory options? I tend to crave salty over sweet.",
+        "time": "1:25 PM",
+        "avatar": "N",
+        "color": "bg-green-500"
+      },
+      {
+        "user": "ProteinPower",
+        "message": "Edamame! You can buy them frozen, microwave quickly and they're perfect finger food with a sprinkle of salt.",
+        "time": "1:28 PM",
+        "avatar": "P",
+        "color": "bg-orange-400"
+      },
+      {
+        "user": "GutHealthGuru",
+        "message": "Has anyone tried making their own veggie chips? I've been air-frying kale and zucchini slices with different seasonings!",
+        "time": "1:32 PM",
+        "avatar": "G",
+        "color": "bg-teal-400"
+      }
+    ],
+    "self-care": [
+      {
+        "user": "SelfLoveJourney",
+        "message": "Started a new self-care ritual this month - 15 minutes of journaling every morning before checking my phone. It's been transformative!",
+        "time": "9:45 AM",
+        "avatar": "S",
+        "color": "bg-pink-400"
+      },
+      {
+        "user": "MindfulMoments",
+        "message": "That sounds wonderful! I've been doing evening face masks while listening to podcasts. Little luxuries make such a difference.",
+        "time": "9:50 AM",
+        "avatar": "M",
+        "color": "bg-purple-500"
+      },
+      {
+        "user": "BathBombEnthusiast",
+        "message": "Anyone have recommendations for sustainable self-care products? Looking to reduce my plastic consumption!",
+        "time": "9:55 AM",
+        "avatar": "B",
+        "color": "bg-green-400"
+      },
+      {
+        "user": "ZeroWasteZen",
+        "message": "I switched to shampoo bars, reusable cotton rounds, and safety razors! The initial investment pays off quickly and feels so much better environmentally.",
+        "time": "10:02 AM",
+        "avatar": "Z",
+        "color": "bg-teal-500"
+      },
+      {
+        "user": "BusyMomSelfCare",
+        "message": "How do you all find time for self-care with young kids? I feel guilty taking any time for myself but know I need it.",
+        "time": "10:08 AM",
+        "avatar": "B",
+        "color": "bg-blue-500"
+      },
+      {
+        "user": "MindfulMoments",
+        "message": "I have a 3yo and 5yo. Honestly, I wake up 30min before them for my sanity. And I count anything that fills my cup as self-care - sometimes it's just 5min of deep breathing in the car before picking them up!",
+        "time": "10:12 AM",
+        "avatar": "M",
+        "color": "bg-purple-500"
+      }
+    ],
+    "postpartum-support": [
+      {
+        "user": "NewMom2023",
+        "message": "4 weeks postpartum and feeling completely overwhelmed. Is this normal? When does it get easier?",
+        "time": "3:24 AM",
+        "avatar": "N",
+        "color": "bg-blue-400"
+      },
+      {
+        "user": "MomOfThree",
+        "message": "Sending you so much love ❤️ The first 6 weeks are pure survival mode. It DOES get easier, I promise. Are you able to get any help with night feedings?",
+        "time": "3:30 AM",
+        "avatar": "M",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "PostpartumDoula",
+        "message": "It's completely normal to feel overwhelmed. Your hormones are adjusting, you're healing physically, and learning to care for a new human - all on minimal sleep. Be gentle with yourself and accept any help offered.",
+        "time": "5:45 AM",
+        "avatar": "P",
+        "color": "bg-pink-500"
+      },
+      {
+        "user": "NewMom2023",
+        "message": "Thanks for the support. My partner does one night feed but I still feel like I'm barely keeping it together. I cry at least once a day. Is that a red flag?",
+        "time": "6:15 AM",
+        "avatar": "N",
+        "color": "bg-blue-400"
+      },
+      {
+        "user": "PostpartumDoula",
+        "message": "Some tears are normal, but if you're feeling consistently sad, hopeless, or having scary thoughts, please mention it to your healthcare provider. Postpartum mood disorders are common and treatable - you don't have to suffer.",
+        "time": "6:20 AM",
+        "avatar": "P",
+        "color": "bg-pink-500"
+      },
+      {
+        "user": "SecondTimeMom",
+        "message": "I found the book 'The Fourth Trimester' really helpful for understanding all the changes. Also - freezer meals were my lifesaver. Anyone in your area who could organize a meal train?",
+        "time": "6:25 AM",
+        "avatar": "S",
+        "color": "bg-green-400"
+      }
+    ],
+    "period-health": [
+      {
+        "user": "CycleSyncer",
+        "message": "Started tracking my cycle with an app and realized my productivity peaks during certain weeks! Anyone else plan their work schedule around their cycle?",
+        "time": "7:15 PM",
+        "avatar": "C",
+        "color": "bg-pink-400"
+      },
+      {
+        "user": "FlowGoer",
+        "message": "Yes! Game-changer! I schedule creative work during my follicular phase and admin tasks during luteal phase when my energy dips.",
+        "time": "7:18 PM",
+        "avatar": "F",
+        "color": "bg-purple-500"
+      },
+      {
+        "user": "PeriodPositive",
+        "message": "Has anyone tried period underwear? Looking to reduce waste but not sure if they're worth the investment.",
+        "time": "7:25 PM",
+        "avatar": "P",
+        "color": "bg-green-400"
+      },
+      {
+        "user": "SustainableCycle",
+        "message": "Absolutely worth it! I use a cup on heavy days and period underwear for lighter days/backup. Took about 3 months to break even cost-wise and now saving money every cycle.",
+        "time": "7:28 PM",
+        "avatar": "S",
+        "color": "bg-blue-400"
+      },
+      {
+        "user": "EndoWarrior",
+        "message": "Does anyone else have debilitating pain with periods? I've been dismissed by two doctors now who just tell me to take more ibuprofen, but I can barely function the first two days.",
+        "time": "7:35 PM",
+        "avatar": "E",
+        "color": "bg-red-400"
+      },
+      {
+        "user": "NurseNavigator",
+        "message": "That's not normal pain and you deserve better care. Ask for a referral to a gynecologist who specializes in endometriosis. Bring a pain diary documenting how it impacts your life. Don't give up!",
+        "time": "7:38 PM",
+        "avatar": "N",
+        "color": "bg-teal-500"
+      }
+    ],
+    "work-life-balance": [
+      {
+        "user": "BoundaryBuilder",
+        "message": "Finally turned off email notifications after 6pm and it's changed my life. What boundaries have you set that improved your work-life balance?",
+        "time": "8:30 PM",
+        "avatar": "B",
+        "color": "bg-blue-500"
+      },
+      {
+        "user": "RemoteWorker",
+        "message": "I dress up for work even though I'm remote. Changing into 'home clothes' at 5pm gives me psychological closure to the workday.",
+        "time": "8:35 PM",
+        "avatar": "R",
+        "color": "bg-green-400"
+      },
+      {
+        "user": "WellnessManager",
+        "message": "Taking a true lunch break away from my desk! Even if it's just 20 minutes outside or reading a book while eating.",
+        "time": "8:40 PM",
+        "avatar": "W",
+        "color": "bg-pink-400"
+      },
+      {
+        "user": "OverwhelmedOwner",
+        "message": "I run my own business and struggle to ever truly disconnect. How do you set boundaries when you're the boss?",
+        "time": "8:45 PM",
+        "avatar": "O",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "EntrepreneurEase",
+        "message": "Fellow business owner here! I set specific 'CEO hours' and 'production hours' in my calendar. Also, separate phone numbers for business/personal and different email apps has been crucial.",
+        "time": "8:50 PM",
+        "avatar": "E",
+        "color": "bg-teal-500"
+      },
+      {
+        "user": "BurnoutSurvivor",
+        "message": "After my burnout last year, I started being religious about planning my week on Sundays - including deliberate white space. If it's not scheduled, it doesn't happen - and that includes rest!",
+        "time": "8:55 PM",
+        "avatar": "B",
+        "color": "bg-orange-400"
+      }
+    ],
+    "salary-negotiations": [
+      {
+        "user": "ValueMyWork",
+        "message": "I have a performance review next week and want to ask for a raise. Any advice on how to approach this conversation?",
+        "time": "12:15 PM",
+        "avatar": "V",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "NegotiationCoach",
+        "message": "Come prepared with specific achievements and their impact. Research industry standards for your role and experience level. And practice your talking points beforehand - confidence is key!",
+        "time": "12:20 PM",
+        "avatar": "N",
+        "color": "bg-pink-500"
+      },
+      {
+        "user": "RecentRaiseWinner",
+        "message": "I found it helpful to frame my request in terms of value to the company, not personal needs. Quantify your contributions where possible!",
+        "time": "12:25 PM",
+        "avatar": "R",
+        "color": "bg-blue-400"
+      },
+      {
+        "user": "ValueMyWork",
+        "message": "What if they say they don't have budget? I'm prepared for that but not sure how to respond without sounding ungrateful.",
+        "time": "12:30 PM",
+        "avatar": "V",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "HRInsider",
+        "message": "Ask what the timeline might be to revisit the conversation. You can also negotiate for non-monetary benefits like additional PTO, flexible hours, professional development budget, or a title change.",
+        "time": "12:35 PM",
+        "avatar": "H",
+        "color": "bg-green-500"
+      },
+      {
+        "user": "CareerStrategist",
+        "message": "And remember - if you've significantly outgrown your compensation, sometimes the best way to get market rate is to change companies. Always know your BATNA (Best Alternative To Negotiated Agreement).",
+        "time": "12:42 PM",
+        "avatar": "C",
+        "color": "bg-teal-400"
+      }
+    ],
+    "relationship-talk": [
+      {
+        "user": "NewlyDating",
+        "message": "Three months into dating someone new and I'm still not sure if we're compatible long-term. How do you know when to keep investing in a relationship?",
+        "time": "9:30 PM",
+        "avatar": "N",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "RelationshipTherapist",
+        "message": "Look for alignment in core values and life goals. And pay attention to how you resolve conflicts together - that tells you more than how you get along when things are good.",
+        "time": "9:35 PM",
+        "avatar": "R",
+        "color": "bg-pink-500"
+      },
+      {
+        "user": "HappilyMarried10Yrs",
+        "message": "I found it helpful to ask myself: Do I like who I am when I'm with this person? Do they bring out my best self or my worst?",
+        "time": "9:40 PM",
+        "avatar": "H",
+        "color": "bg-green-400"
+      },
+      {
+        "user": "NewlyDating",
+        "message": "Thank you - those are great questions to reflect on. We communicate well but have different perspectives on money. I'm a saver, they're a spender, and it makes me anxious.",
+        "time": "9:45 PM",
+        "avatar": "N",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "FinanceFirst",
+        "message": "Financial incompatibility is a major cause of relationship stress. Have you had explicit conversations about money values, or are you just observing habits?",
+        "time": "9:48 PM",
+        "avatar": "F",
+        "color": "bg-blue-500"
+      },
+      {
+        "user": "DivorcedAndThriving",
+        "message": "Don't ignore red flags! I wish I had taken financial differences more seriously before marriage. That said, different approaches can work if you both have awareness and respect for each other's needs.",
+        "time": "9:52 PM",
+        "avatar": "D",
+        "color": "bg-orange-400"
+      }
+    ],
+    "pregnancy-care": [
+      {
+        "user": "BumpAhead",
+        "message": "20 weeks pregnant and struggling with back pain. Any pregnancy-safe stretches or exercises that helped you?",
+        "time": "2:45 PM",
+        "avatar": "B",
+        "color": "bg-blue-400"
+      },
+      {
+        "user": "PregnancyPT",
+        "message": "Child's pose, pelvic tilts, and swimming were lifesavers for me! Also consider a pregnancy support belt for daily activities.",
+        "time": "2:50 PM",
+        "avatar": "P",
+        "color": "bg-pink-500"
+      },
+      {
+        "user": "SecondTimeMom",
+        "message": "Prenatal yoga on YouTube helped me immensely! And don't underestimate the relief from a tennis ball pressed against your lower back while leaning against a wall.",
+        "time": "2:55 PM",
+        "avatar": "S",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "BumpAhead",
+        "message": "Thanks everyone! I'll try these suggestions. Another question - did anyone experience pregnancy brain fog? I keep forgetting basic words mid-sentence!",
+        "time": "3:00 PM",
+        "avatar": "B",
+        "color": "bg-blue-400"
+      },
+      {
+        "user": "MomOfTwins",
+        "message": "Omg YES! I once put my phone in the refrigerator and spent 20 minutes looking for it! Pregnancy brain is SO real. Lists and phone reminders became essential tools.",
+        "time": "3:05 PM",
+        "avatar": "M",
+        "color": "bg-green-400"
+      },
+      {
+        "user": "ObGynNurse",
+        "message": "The brain fog is very common! Your brain is literally rewiring itself during pregnancy. Omega-3 supplements might help a bit, but mostly just be kind to yourself and use external memory aids like notes and alarms.",
+        "time": "3:10 PM",
+        "avatar": "O",
+        "color": "bg-teal-500"
+      }
+    ],
+    "sleep-health": [
+      {
+        "user": "InsomniaFighter",
+        "message": "Started a bedtime routine last month and my sleep has improved dramatically. Anyone else have sleep hygiene practices that made a big difference?",
+        "time": "10:15 PM",
+        "avatar": "I",
+        "color": "bg-blue-400"
+      },
+      {
+        "user": "SleepScientist",
+        "message": "Consistency is key! Going to bed and waking up at the same time (even weekends) helps regulate your circadian rhythm more than any other intervention.",
+        "time": "10:20 PM",
+        "avatar": "S",
+        "color": "bg-pink-500"
+      },
+      {
+        "user": "DreamCatcher",
+        "message": "Keeping my room cold (65°F) and completely dark transformed my sleep quality. Also, magnesium glycinate supplement an hour before bed helps me relax.",
+        "time": "10:25 PM",
+        "avatar": "D",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "NightShiftNurse",
+        "message": "Any tips for those of us working night shifts? My sleep schedule is all over the place and blackout curtains only help so much.",
+        "time": "10:30 PM",
+        "avatar": "N",
+        "color": "bg-green-400"
+      },
+      {
+        "user": "SleepScientist",
+        "message": "Night shifts are tough! Try to maintain the same sleep schedule even on days off. Wear blue light blocking glasses in the morning when heading home. And melatonin can help but timing is crucial - take it about 30min before your intended bedtime.",
+        "time": "10:35 PM",
+        "avatar": "S",
+        "color": "bg-pink-500"
+      },
+      {
+        "user": "AnxiousSleeper",
+        "message": "What about racing thoughts keeping you awake? I go to bed tired but then my brain decides it's time to replay every embarrassing moment from my life!",
+        "time": "10:40 PM",
+        "avatar": "A",
+        "color": "bg-orange-400"
+      },
+      {
+        "user": "MindfulRest",
+        "message": "I use the 'worry journal' technique - write down thoughts before bed to get them out of your head. Then a body scan meditation helps bring me back to the present moment instead of time traveling through regrets.",
+        "time": "10:45 PM",
+        "avatar": "M",
+        "color": "bg-teal-500"
+      }
+    ],
+    "gut-health": [
+      {
+        "user": "MicrobiomeExplorer",
+        "message": "Recently diagnosed with IBS and feeling overwhelmed by dietary advice. Has anyone worked with a digestive health dietitian?",
+        "time": "4:15 PM",
+        "avatar": "M",
+        "color": "bg-green-400"
+      },
+      {
+        "user": "GutHealthJourney",
+        "message": "Yes! Working with a dietitian specializing in FODMAP helped me identify my specific triggers instead of eliminating foods unnecessarily. Worth every penny!",
+        "time": "4:20 PM",
+        "avatar": "G",
+        "color": "bg-blue-400"
+      },
+      {
+        "user": "FermentationFan",
+        "message": "Adding fermented foods gradually made a huge difference for me. Started with just 1 tbsp of sauerkraut daily and worked up from there.",
+        "time": "4:25 PM",
+        "avatar": "F",
+        "color": "bg-purple-500"
+      },
+      {
+        "user": "MicrobiomeExplorer",
+        "message": "Thanks for the suggestions! Has anyone noticed connections between stress and gut symptoms? My flare-ups seem to correlate with work deadlines.",
+        "time": "4:30 PM",
+        "avatar": "M",
+        "color": "bg-green-400"
+      },
+      {
+        "user": "GISpecialist",
+        "message": "The gut-brain connection is powerful! The gut has its own nervous system - the enteric nervous system - often called the 'second brain'. Stress management can be as important as dietary changes for many IBS patients.",
+        "time": "4:35 PM",
+        "avatar": "G",
+        "color": "bg-pink-500"
+      },
+      {
+        "user": "AnxietyGut",
+        "message": "Definitely correlated for me. Meditation and therapy have helped my gut symptoms almost as much as dietary changes. I also take L-theanine during stressful periods.",
+        "time": "4:40 PM",
+        "avatar": "A",
+        "color": "bg-orange-400"
+      },
+      {
+        "user": "HolisticNP",
+        "message": "Don't overlook sleep quality either! Poor sleep increases inflammation and can worsen gut symptoms. The gut-brain-immune axis is interconnected.",
+        "time": "4:45 PM",
+        "avatar": "H",
+        "color": "bg-teal-500"
+      }
+    ],
+    "vent-and-support": [
+      {
+        "user": "FrustratedFriday",
+        "message": "Had the worst performance review today even though I've been working overtime all quarter. Feeling so unappreciated and ready to quit.",
+        "time": "5:30 PM",
+        "avatar": "F",
+        "color": "bg-red-400"
+      },
+      {
+        "user": "SupportiveSoul",
+        "message": "That sounds incredibly frustrating. You deserve recognition for your hard work. Would it help to talk through what happened? I'm here to listen.",
+        "time": "5:35 PM",
+        "avatar": "S",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "CareerNavigator",
+        "message": "Been there before - it's so demoralizing. Take the weekend to process before making any decisions. But also, update that resume just in case. Your value doesn't decrease because someone failed to see it. ❤️",
+        "time": "5:40 PM",
+        "avatar": "C",
+        "color": "bg-pink-500"
+      },
+      {
+        "user": "FrustratedFriday",
+        "message": "Thanks for the support. I know I shouldn't take it personally but my manager basically dismissed all my extra projects and focused on one deadline I missed by 2 days because I was covering for a coworker.",
+        "time": "5:45 PM",
+        "avatar": "F",
+        "color": "bg-red-400"
+      },
+      {
+        "user": "CorporateCulture",
+        "message": "Document EVERYTHING. Start keeping a work journal with your accomplishments, positive feedback, etc. Next review, go in with your receipts. And yes, discreetly look for other opportunities - you deserve better.",
+        "time": "5:50 PM",
+        "avatar": "C",
+        "color": "bg-blue-400"
+      },
+      {
+        "user": "BoundaryBuilder",
+        "message": "While you're figuring out next steps - can you scale back the overtime? If they don't appreciate it anyway, protect your energy for either job hunting or setting better workplace boundaries.",
+        "time": "5:55 PM",
+        "avatar": "B",
+        "color": "bg-green-500"
+      }
+    ],
+    "workplace-issues": [
+      {
+        "user": "OfficeObserver",
+        "message": "How do you handle a coworker who constantly takes credit for your ideas in meetings?",
+        "time": "1:45 PM",
+        "avatar": "O",
+        "color": "bg-blue-400"
+      },
+      {
+        "user": "ProfessionalCoach",
+        "message": "Try stating your ideas with 'As I mentioned earlier...' or 'Building on my point about...' Makes it harder for others to claim. Also worth having a private conversation if it continues.",
+        "time": "1:50 PM",
+        "avatar": "P",
+        "color": "bg-pink-500"
+      },
+      {
+        "user": "StrategicThinker",
+        "message": "Document your contributions in writing before meetings when possible. And ally with colleagues who will back you up: 'That's exactly what Sarah proposed last week.'",
+        "time": "1:55 PM",
+        "avatar": "S",
+        "color": "bg-purple-400"
+      },
+      {
+        "user": "NewManager",
+        "message": "I was just promoted to team lead and struggling with confidence in meetings with senior leadership. Any tips for being heard in a room full of executives?",
+        "time": "2:00 PM",
+        "avatar": "N",
+        "color": "bg-green-400"
+      },
+      {
+        "user": "ExecutivePresence",
+        "message": "Preparation is key! Know your data cold and anticipate questions. Speak slightly more slowly than feels natural. And try power posing before important meetings - sounds silly but the confidence boost is backed by research!",
+        "time": "2:05 PM",
+        "avatar": "E",
+        "color": "bg-teal-500"
+      },
+      {
+        "user": "CorporateClimber",
+        "message": "Get a senior mentor/sponsor if possible. And remember - executives appreciate brevity and clarity. Start with your conclusion, then support it with data. Don't bury the lede!",
+        "time": "2:10 PM",
+        "avatar": "C",
+        "color": "bg-orange-400"
+      },
+      {
+        "user": "SenioritySurvivor",
+        "message": "Be the person who speaks less but when you do, it's impactful. I prepare one or two strategic points for each meeting rather than trying to contribute to every topic. Quality over quantity!",
+        "time": "2:15 PM",
+        "avatar": "S",
+        "color": "bg-blue-500"
+      }
+    ]
+  }
