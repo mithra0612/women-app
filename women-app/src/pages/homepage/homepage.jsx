@@ -383,8 +383,6 @@ const LandingPage = () => {
                 className="cursor-pointer"
                 onClick={() => document.getElementById('features').scrollIntoView({behavior: 'smooth'})}
               >
-                <ChevronDown className="w-6 h-6" />
-                <span className="text-sm">Scroll to explore</span>
               </motion.div>
             </motion.div>
           </motion.div>
@@ -942,10 +940,7 @@ const LandingPage = () => {
           <div className="border-t border-purple-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p>© 2025 WellCare. All rights reserved.</p>
             <div className="mt-4 md:mt-0">
-              <select className="bg-purple-800 text-white px-3 py-1 rounded">
-                <option>English</option>
-                <option>Tamil</option>
-              </select>
+             
             </div>
           </div>
         </div>

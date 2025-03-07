@@ -8,7 +8,6 @@ import {
   X,
   Star,
   ArrowRight,
-  ChevronLeft,
 } from "lucide-react";
 import s1 from "../../assets/SexualHealth/s1.png";
 import s2 from "../../assets/SexualHealth/s2.png";
@@ -21,9 +20,7 @@ const SexualIntimateHealths = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
   const [modalContent, setModalContent] = useState(null);
-  // Pagination states
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  const [content, setContent] = useState([]);
 
   // Categories for women's health issues
   const categories = [
@@ -32,7 +29,6 @@ const SexualIntimateHealths = () => {
     { "id": "dyspareunia", "name": "Dyspareunia (Pain During Sex)" },
     { "id": "low-libido", "name": "Low Libido & Sexual Dysfunction" },
   ];
-  const [content, setContent] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:5000/api/sexualintimate")
@@ -91,28 +87,6 @@ const SexualIntimateHealths = () => {
 
     return matchesSearch && matchesCategory && matchesTab;
   });
-
-  // Calculate pagination values
-  const totalPages = Math.ceil(filteredContent.length / itemsPerPage);
-  
-  // Reset to first page when filters change
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [activeCategory, activeTab, searchQuery]);
-  
-  // Get current page items
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredContent.slice(indexOfFirstItem, indexOfLastItem);
-
-  // Pagination controls
-  const handlePreviousPage = () => {
-    setCurrentPage((prev) => Math.max(prev - 1, 1));
-  };
-
-  const handleNextPage = () => {
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  };
 
   const featuredResources = [
     {
@@ -184,20 +158,6 @@ const SexualIntimateHealths = () => {
 
     return matchesSearch && matchesCategory && matchesTab;
   });
-
-  // Content type icon mapping
-  const getTypeIcon = (type) => {
-    switch (type) {
-      case "video":
-        return <Play className="w-5 h-5" />;
-      case "article":
-        return <FileText className="w-5 h-5" />;
-      case "blog":
-        return <BookOpen className="w-5 h-5" />;
-      default:
-        return null;
-    }
-  };
 
   // Modal for viewing content
   const Modal = ({ content, onClose }) => {
@@ -289,7 +249,7 @@ const SexualIntimateHealths = () => {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 ml-[220px]">
-      <h1 className="text-3xl font-bold text-purple-700 mb-4 text-left">
+        <h1 className="text-3xl font-bold text-purple-700 mb-4 text-left">
           Sexual and Intimate Health
         </h1>
         {filteredFeatured.length > 0 && (
@@ -439,10 +399,10 @@ const SexualIntimateHealths = () => {
         </div>
 
         {/* Content Grid */}
-        {currentItems.length > 0 ? (
+        {filteredContent.length > 0 ? (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {currentItems.map((item) => (
+              {filteredContent.map((item) => (
                 <div
                   key={item.id}
                   className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition cursor-pointer"
@@ -497,71 +457,7 @@ const SexualIntimateHealths = () => {
               ))}
             </div>
             
-            {/* Pagination Controls */}
-            <div className="mt-8 flex justify-between items-center">
-              <div className="text-sm text-gray-600">
-                Showing {indexOfFirstItem + 1}-{Math.min(indexOfLastItem, filteredContent.length)} of {filteredContent.length} items
-              </div>
-              
-              <div className="flex space-x-2">
-                <button
-                  onClick={handlePreviousPage}
-                  disabled={currentPage === 1}
-                  className={`flex items-center px-3 py-2 rounded-md border ${
-                    currentPage === 1
-                      ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                      : "bg-white text-gray-700 hover:bg-gray-50"
-                  }`}
-                >
-                  <ChevronLeft className="w-4 h-4 mr-1" />
-                  Previous
-                </button>
-                
-                {/* Page Numbers */}
-                <div className="flex items-center space-x-1">
-                  {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
-                    // For simplicity, show max 5 pages, with current page in the middle when possible
-                    let pageNum;
-                    if (totalPages <= 5) {
-                      pageNum = i + 1;
-                    } else if (currentPage <= 3) {
-                      pageNum = i + 1;
-                    } else if (currentPage >= totalPages - 2) {
-                      pageNum = totalPages - 4 + i;
-                    } else {
-                      pageNum = currentPage - 2 + i;
-                    }
-                    
-                    return (
-                      <button
-                        key={pageNum}
-                        onClick={() => setCurrentPage(pageNum)}
-                        className={`w-8 h-8 flex items-center justify-center rounded-md ${
-                          currentPage === pageNum
-                            ? "bg-purple-600 text-white"
-                            : "bg-white text-gray-700 hover:bg-gray-50"
-                        }`}
-                      >
-                        {pageNum}
-                      </button>
-                    );
-                  })}
-                </div>
-                
-                <button
-                  onClick={handleNextPage}
-                  disabled={currentPage === totalPages}
-                  className={`flex items-center px-3 py-2 rounded-md border ${
-                    currentPage === totalPages
-                      ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                      : "bg-white text-gray-700 hover:bg-gray-50"
-                  }`}
-                >
-                  Next
-                  <ChevronRight className="w-4 h-4 ml-1" />
-                </button>
-              </div>
-            </div>
+         
           </>
         ) : (
           <div className="text-center py-10">

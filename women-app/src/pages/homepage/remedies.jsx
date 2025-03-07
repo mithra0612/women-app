@@ -449,7 +449,7 @@ const Remedies = () => {
   }, []);
 
   return (
-    <div className="flex h-screen bg-gradient-to-br from-violet-50 to-pink-100 ml-60">
+    <div className="flex h-screen bg-gradient-to-br ml-60">
       {/* Desktop sidebar */}
       <div className="hidden md:block">
         <Sidebar />
