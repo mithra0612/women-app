@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CircleHelpIcon,  ChevronRight,HeartIcon, BookOpenIcon, Cookie, RotateCcw, Home, Calendar, Bell, Settings, Info, Star, Search, X, ChevronDown, ChevronUp, ArrowLeft } from 'lucide-react';
+import { CircleHelpIcon, ChevronRight, HeartIcon, BookOpenIcon, Cookie, RotateCcw, Home, Calendar, Bell, Settings, Info, Star, Search, X, ChevronDown, ChevronUp, ArrowLeft } from 'lucide-react';
 import Sidebar from '../../components/Sidebar/Sidebar';
 
 const Remedies = () => {
@@ -41,39 +41,38 @@ const Remedies = () => {
         prepTime: "15 minutes",
         benefits: "Relieves cramping through muscle relaxation and anti-inflammatory properties."
       },
-
-        {
-          id: "menstrual-3",
-          title: "Ajwain & Jaggery Tea",
-          ingredients: ["1 tsp ajwain (carom seeds)", "1 small piece jaggery", "1 cup water"],
-          instructions: "Boil ajwain in water for 5 minutes. Add jaggery and stir until dissolved. Drink warm.",
-          prepTime: "10 minutes",
-          benefits: "Eases menstrual cramps, promotes digestion, and regulates blood flow."
-        },
-        {
-          id: "menstrual-4",
-          title: "Turmeric Milk",
-          ingredients: ["1/2 tsp turmeric powder", "1 cup warm milk", "1/2 tsp honey (optional)"],
-          instructions: "Mix turmeric into warm milk. Add honey for taste if desired. Drink before bed.",
-          prepTime: "5 minutes",
-          benefits: "Anti-inflammatory, reduces cramps, and balances hormones."
-        },
-        {
-          id: "menstrual-5",
-          title: "Cumin Seed Water",
-          ingredients: ["1 tsp cumin seeds", "1 cup water"],
-          instructions: "Soak cumin seeds overnight or boil in water for 5 minutes. Strain and drink warm.",
-          prepTime: "5 minutes (plus soaking time if applicable)",
-          benefits: "Relieves bloating, reduces pain, and supports digestion."
-        },
-        {
-          id: "menstrual-6",
-          title: "Holy Basil (Tulsi) Tea",
-          ingredients: ["5-6 fresh tulsi leaves", "1 cup water", "1 tsp honey (optional)"],
-          instructions: "Boil tulsi leaves in water for 5 minutes. Strain and add honey if desired.",
-         prepTime: "10 minutes",
-          benefits: "Reduces stress, regulates menstrual cycle, and relieves cramps."
-        }
+      {
+        id: "menstrual-3",
+        title: "Ajwain & Jaggery Tea",
+        ingredients: ["1 tsp ajwain (carom seeds)", "1 small piece jaggery", "1 cup water"],
+        instructions: "Boil ajwain in water for 5 minutes. Add jaggery and stir until dissolved. Drink warm.",
+        prepTime: "10 minutes",
+        benefits: "Eases menstrual cramps, promotes digestion, and regulates blood flow."
+      },
+      {
+        id: "menstrual-4",
+        title: "Turmeric Milk",
+        ingredients: ["1/2 tsp turmeric powder", "1 cup warm milk", "1/2 tsp honey (optional)"],
+        instructions: "Mix turmeric into warm milk. Add honey for taste if desired. Drink before bed.",
+        prepTime: "5 minutes",
+        benefits: "Anti-inflammatory, reduces cramps, and balances hormones."
+      },
+      {
+        id: "menstrual-5",
+        title: "Cumin Seed Water",
+        ingredients: ["1 tsp cumin seeds", "1 cup water"],
+        instructions: "Soak cumin seeds overnight or boil in water for 5 minutes. Strain and drink warm.",
+        prepTime: "5 minutes (plus soaking time if applicable)",
+        benefits: "Relieves bloating, reduces pain, and supports digestion."
+      },
+      {
+        id: "menstrual-6",
+        title: "Holy Basil (Tulsi) Tea",
+        ingredients: ["5-6 fresh tulsi leaves", "1 cup water", "1 tsp honey (optional)"],
+        instructions: "Boil tulsi leaves in water for 5 minutes. Strain and add honey if desired.",
+        prepTime: "10 minutes",
+        benefits: "Reduces stress, regulates menstrual cycle, and relieves cramps."
+      }
     ],
     pcos: [
       {
@@ -360,8 +359,7 @@ const Remedies = () => {
     "Wearing cotton clothes during hot weather will help your skin breathe and reduce heat rashes.",
     "Applying aloe vera gel on your face overnight can help soothe sunburns and reduce acne.",
     "Soaking your feet in warm salt water will relieve stress and improve circulation after a long day."
-];
-
+  ];
 
   // Get all recipes for search functionality
   const getAllRecipes = () => {
@@ -451,7 +449,7 @@ const Remedies = () => {
   }, []);
 
   return (
-    <div className="flex h-screen bg-gradient-to-br from-pink-50 to-purple-50 ml-60">
+    <div className="flex h-screen bg-gradient-to-br from-violet-50 to-pink-100 ml-60">
       {/* Desktop sidebar */}
       <div className="hidden md:block">
         <Sidebar />
@@ -461,7 +459,7 @@ const Remedies = () => {
       <div className="md:hidden absolute top-4 left-4 z-30">
         <button 
           onClick={toggleMobileMenu}
-          className="p-2 bg-pink-600 text-white rounded-full shadow-lg hover:bg-pink-700 transition-all"
+          className="p-2 bg-violet-600 text-white rounded-full shadow-lg hover:bg-violet-700 transition-all duration-300"
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? <X size={20} /> : <div className="w-5 h-5 flex flex-col justify-center space-y-1">
@@ -475,14 +473,14 @@ const Remedies = () => {
       {/* Mobile sidebar */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden" onClick={toggleMobileMenu}>
-          <div className="w-64 h-full bg-white shadow-lg transform transition-transform" onClick={e => e.stopPropagation()}>
+          <div className="w-64 h-full bg-white shadow-xl transform transition-transform duration-300" onClick={e => e.stopPropagation()}>
             <Sidebar />
           </div>
         </div>
       )}
       
       <div className="flex-1 overflow-auto">
-        <div className="max-w-5xl mx-auto p-4">
+        <div className="max-w-5xl mx-auto p-6">
           {selectedRecipe ? (
             <DetailedRecipeView 
               recipe={selectedRecipe} 
@@ -493,26 +491,26 @@ const Remedies = () => {
             />
           ) : (
             <>
-              <header className="mb-8 text-center pt-6">
-                <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-700 to-purple-700 mb-2">Women's Wellness Remedies</h1>
-                <p className="text-pink-600 text-lg">Natural solutions for common women's health concerns</p>
+              <header className="mb-10 text-center pt-8">
+                <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-700 to-pink-600 mb-3">Women's Wellness Remedies</h1>
+                <p className="text-violet-600 text-lg font-light">Natural solutions for your wellbeing</p>
                 
                 {/* Search bar */}
-                <div className="mt-6 relative max-w-xl mx-auto group mr-[300px]">
+                <div className="mt-6 relative max-w-xl mx-auto group">
                   <input
                     type="text"
                     placeholder="Search remedies, ingredients, benefits..."
-                    className="w-[800px] px-2 py-3 pl-12 pr-10 rounded-full border border-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent shadow-sm transition-all group-hover:shadow-md"
+                    className="w-full px-4 py-3 pl-12 pr-10 rounded-full border border-violet-200 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-transparent shadow-sm transition-all duration-300 group-hover:shadow-lg bg-white"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onFocus={() => setIsSearching(true)}
                   />
-                  <div className="absolute left-4 top-3.5 text-pink-400">
+                  <div className="absolute left-4 top-3.5 text-violet-400">
                     <Search size={18} />
                   </div>
                   {searchQuery && (
                     <button 
-                      className="absolute right-4 top-3.5 text-pink-400 hover:text-pink-600 transition-colors"
+                      className="absolute right-4 top-3.5 text-violet-400 hover:text-violet-600 transition-colors duration-200"
                       onClick={() => {
                         setSearchQuery('');
                         setIsSearching(false);
@@ -526,11 +524,11 @@ const Remedies = () => {
               </header>
               
               {isSearching && searchQuery ? (
-                <div className="mb-8 animate-fadeIn">
-                  <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-xl font-bold text-pink-800">Search Results</h2>
+                <div className="mb-10 animate-fadeIn">
+                  <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-xl font-semibold text-violet-800">Search Results</h2>
                     <button 
-                      className="flex items-center text-pink-600 hover:text-pink-800 transition-colors"
+                      className="flex items-center text-violet-600 hover:text-violet-800 transition-colors duration-200"
                       onClick={() => {
                         setSearchQuery('');
                         setIsSearching(false);
@@ -555,27 +553,27 @@ const Remedies = () => {
                     ))}
                   </div>
                   {filteredRecipes().length === 0 && (
-                    <div className="text-center py-12 bg-white rounded-lg shadow-sm">
+                    <div className="text-center py-12 bg-white rounded-xl shadow-sm border border-violet-100">
                       <div className="text-4xl mb-4">🔍</div>
-                      <p className="text-pink-700 mb-2">No remedies found matching your search.</p>
-                      <p className="text-pink-500 text-sm">Try different keywords or browse categories instead.</p>
+                      <p className="text-violet-700 mb-2 font-medium">No remedies found</p>
+                      <p className="text-violet-500 text-sm">Try different keywords or explore categories</p>
                     </div>
                   )}
                 </div>
               ) : (
                 <>
-                  <nav className="flex justify-center mb-8">
-                    <div className="bg-white rounded-lg shadow-sm p-1 flex">
+                  <nav className="flex justify-center mb-10">
+                    <div className="bg-white rounded-xl shadow-sm p-1 flex space-x-2">
                       <button 
                         onClick={() => setActiveTab('recipes')}
-                        className={`flex items-center px-6 py-2 rounded-lg transition-all duration-300 ${activeTab === 'recipes' ? 'bg-pink-600 text-white shadow-md' : 'text-pink-800 hover:bg-pink-100'}`}
+                        className={`flex items-center px-6 py-2 rounded-lg transition-all duration-300 ${activeTab === 'recipes' ? 'bg-violet-600 text-white shadow-md' : 'text-violet-800 hover:bg-violet-100'}`}
                       >
                         <BookOpenIcon size={18} className="mr-2" />
                         Remedy Recipes
                       </button>
                       <button 
                         onClick={() => setActiveTab('fortune')}
-                        className={`flex items-center px-6 py-2 rounded-lg transition-all duration-300 ${activeTab === 'fortune' ? 'bg-pink-600 text-white shadow-md' : 'text-pink-800 hover:bg-pink-100'}`}
+                        className={`flex items-center px-6 py-2 rounded-lg transition-all duration-300 ${activeTab === 'fortune' ? 'bg-violet-600 text-white shadow-md' : 'text-violet-800 hover:bg-violet-100'}`}
                       >
                         <Cookie size={18} className="mr-2" />
                         Health Fortune
@@ -585,52 +583,50 @@ const Remedies = () => {
                   
                   {activeTab === 'recipes' && (
                     <div className="animate-fadeIn">
-                      <div className="flex flex-wrap md:flex-nowrap md:space-x-4 mb-6">
+                      <div className="flex flex-wrap md:flex-nowrap md:space-x-6 mb-8">
                         {/* Category tabs */}
                         <div className="w-full">
-                          <div className="flex flex-wrap gap-3 justify-center"> 
-                          <div className="flex space-x-5">
-                              {healthCategories.slice(0,6).map(category => (
-                                <button
-                                  key={category.id}
-                                  onClick={() => {
-                                    setSelectedCategory(category.id);
-                                    setShowFavorites(false);
-                                  }}
-                                  className={`p-3 px-4 rounded-lg flex items-center whitespace-nowrap transition-all ${
-                                    selectedCategory === category.id && !showFavorites
-                                      ? 'bg-pink-600 text-white shadow-md transform scale-105'
-                                      : 'bg-white text-pink-800 hover:bg-pink-100'
-                                  }`}
-                                >
-                                  <span className="text-xl mr-2">{category.icon}</span>
-                                  <span className="font-medium">{category.name}</span>
-                                </button>
-                              ))}
-                            </div>
+                          <div className="flex flex-wrap gap-4 justify-center">
+                            {healthCategories.slice(0,6).map(category => (
+                              <button
+                                key={category.id}
+                                onClick={() => {
+                                  setSelectedCategory(category.id);
+                                  setShowFavorites(false);
+                                }}
+                                className={`px-4 py-3 rounded-lg flex items-center whitespace-nowrap transition-all duration-300 ${
+                                  selectedCategory === category.id && !showFavorites
+                                    ? 'bg-violet-600 text-white shadow-md transform scale-105'
+                                    : 'bg-white text-violet-800 hover:bg-violet-100 hover:shadow-sm'
+                                }`}
+                              >
+                                <span className="text-xl mr-2">{category.icon}</span>
+                                <span className="font-medium">{category.name}</span>
+                              </button>
+                            ))}
                           </div>
                         </div>
                         
                         {/* Favorites toggle */}
-                        <div className="w-full mt-20  relative left-[-650px]  flex justify-center">
+                        <div className="w-full md:w-auto mt-6 md:mt-0 flex justify-center">
                           <button
                             onClick={() => setShowFavorites(!showFavorites)}
-                            className={`p-3 rounded-lg w-40 h-12 flex items-center justify-center w-full transition-all ${
+                            className={`px-2 py-1 rounded-md w-54 h-10 flex items-center justify-center transition-all duration-300 ${
                               showFavorites
-                                ? 'bg-pink-600 text-white shadow-md'
-                                : 'bg-white text-pink-800 hover:bg-pink-100'
+                                ? 'bg-violet-600 text-white shadow-md'
+                                : 'bg-white text-violet-800 hover:bg-violet-100 hover:shadow-sm'
                             }`}
                           >
-                            <HeartIcon size={18} className={`mr-3 mt-1 ${showFavorites ? 'fill-white' : ''}`} />
-                            <span className="font-medium text-xl">Favorites</span>
+                            <HeartIcon size={18} className={`mr-4 ${showFavorites ? 'fill-white' : ''}`} />
+                            <span className="font-medium">Favorites</span>
                           </button>
                         </div>
                       </div>
                       
                       {showFavorites ? (
                         <div>
-                          <h2 className="text-xl font-bold text-pink-800 mb-4 flex items-center">
-                            <HeartIcon size={20} className="mr-2 text-pink-600" /> 
+                          <h2 className="text-xl font-semibold text-violet-800 mb-6 flex items-center">
+                            <HeartIcon size={20} className="mr-2 text-violet-600" /> 
                             Your Favorite Remedies
                           </h2>
                           
@@ -649,16 +645,16 @@ const Remedies = () => {
                               ))}
                             </div>
                           ) : (
-                            <div className="text-center py-12 bg-white rounded-lg shadow-sm">
-                              <div className="text-4xl mb-4">💝</div>
-                              <p className="text-pink-700 mb-2">You haven't saved any favorites yet.</p>
-                              <p className="text-pink-500 text-sm">Star recipes you love to find them here!</p>
+                            <div className="text-center py-12 bg-white rounded-xl shadow-sm border border-violet-100">
+                              <div className="text-4xl mb-4">💜</div>
+                              <p className="text-violet-700 mb-2 font-medium">No favorites yet</p>
+                              <p className="text-violet-500 text-sm">Star your favorite recipes to see them here</p>
                             </div>
                           )}
                         </div>
                       ) : (
                         <div>
-                          <h2 className="text-xl font-bold text-pink-800 mb-4 flex items-center">
+                          <h2 className="text-xl font-semibold text-violet-800 mb-6 flex items-center">
                             <span className="mr-2">{healthCategories.find(c => c.id === selectedCategory)?.icon}</span>
                             {healthCategories.find(c => c.id === selectedCategory)?.name} Remedies
                           </h2>
@@ -679,32 +675,31 @@ const Remedies = () => {
                         </div>
                       )}
                     </div>
-                    
                   )}
                   
                   {activeTab === 'fortune' && (
-                    <div className="flex flex-col items-center justify-center py-8 animate-fadeIn">
-                      <div className="mb-8 text-center max-w-md">
-                        <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-amber-800 mb-2">Health Fortune Cookie</h2>
-                        <p className="text-amber-600">Tap the cookie to reveal a wellness tip tailored just for you</p>
+                    <div className="flex flex-col items-center justify-center py-10 animate-fadeIn">
+                      <div className="mb-10 text-center max-w-md">
+                        <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-700 to-pink-600 mb-3">Health Fortune Cookie</h2>
+                        <p className="text-violet-600 font-light">Tap to reveal your daily wellness tip</p>
                       </div>
                       
-                      <div className="relative w-64 h-64 flex items-center justify-center mb-8">
+                      <div className="relative w-64 h-64 flex items-center justify-center mb-10">
                         {!fortuneCookie.opened ? (
                           <button 
                             onClick={openFortuneCookie}
-                            className={`w-48 h-48 bg-gradient-to-br from-amber-200 to-amber-300 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all ${fortuneAnimation ? 'animate-pulse' : 'hover:scale-105'}`}
+                            className={`w-48 h-48 bg-gradient-to-br from-violet-200 to-pink-200 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 ${fortuneAnimation ? 'animate-pulse' : 'hover:scale-105'}`}
                             aria-label="Open fortune cookie"
                           >
-                            <div className="text-6xl transform -rotate-12 mb-10 hover:rotate-12 transition-transform">🥠</div>
-                            <div className="absolute mt-28 text-sm font-medium text-amber-800 bg-white bg-opacity-70 px-3 py-1 rounded-full shadow-sm">Tap to open</div>
+                            <div className="text-6xl transform -rotate-12 mb-10 hover:rotate-12 transition-transform duration-300">🥠</div>
+                            <div className="absolute mt-28 text-sm font-medium text-violet-800 bg-white bg-opacity-80 px-3 py-1 rounded-full shadow-sm">Tap to open</div>
                           </button>
                         ) : (
-                          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-8 rounded-lg shadow-lg max-w-md text-center border border-amber-200 animate-fadeIn">
-                            <p className="text-lg font-medium text-amber-800 mb-6 italic">"{fortuneCookie.message}"</p>
+                          <div className="bg-gradient-to-br from-violet-50 to-pink-50 p-8 rounded-xl shadow-lg max-w-md text-center border border-violet-100 animate-fadeIn">
+                            <p className="text-lg font-medium text-violet-800 mb-6 italic">"{fortuneCookie.message}"</p>
                             <button 
                               onClick={resetFortuneCookie}
-                                className="flex items-center justify-center w-60 h-16 px-4 py-2 bg-amber-200 text-amber-800 text-sm font-semibold rounded-lg hover:bg-amber-300 transition-all shadow-sm hover:shadow-lg"
+                              className="flex items-center justify-center w-full px-4 py-2 bg-violet-200 text-violet-800 font-semibold rounded-lg hover:bg-violet-300 transition-all duration-300 shadow-sm hover:shadow-md"
                               aria-label="Try another fortune"
                             >
                               <RotateCcw size={16} className="mr-2" />
@@ -714,29 +709,29 @@ const Remedies = () => {
                         )}
                       </div>
                       
-                      <div className="text-center max-w-md text-amber-700 bg-white p-6 rounded-lg shadow-sm border border-amber-100">
+                      <div className="text-center max-w-md text-violet-700 bg-white p-6 rounded-xl shadow-sm border border-violet-100">
                         <h3 className="font-medium mb-2">About Health Fortunes</h3>
-                        <p>These daily wisdom "cookies" are designed to gently guide you toward better health habits. Each tip is rooted in traditional wisdom and modern wellness practices for women's health.</p>
+                        <p className="font-light">Daily wisdom to guide you toward better health habits, blending traditional and modern wellness practices.</p>
                       </div>
                     </div>
                   )}
                 </>
               )}
               
-              <footer className="mt-12 pt-8 border-t border-pink-200 text-center">
+              <footer className="mt-12 pt-8 border-t border-violet-200 text-center">
                 <div className="max-w-lg mx-auto">
-                  <div className="mb-6 bg-pink-50 p-4 rounded-lg border border-pink-200 inline-block">
-                    <div className="flex items-center text-pink-700 text-sm">
-                      <Info size={16} className="mr-2 mb-4" />
-                      <p>Always consult with a healthcare provider before trying new remedies or if symptoms persist.</p>
+                  <div className="mb-6 bg-violet-50 p-4 rounded-xl border border-violet-100 inline-block">
+                    <div className="flex items-center text-violet-700 text-sm">
+                      <Info size={16} className="mr-2" />
+                      <p>Consult a healthcare provider before trying new remedies or if symptoms persist.</p>
                     </div>
                   </div>
                   <div className="flex justify-center space-x-6 mb-4">
-                    <a href="#" className="text-pink-500 hover:text-pink-700 transition-colors">Privacy Policy</a>
-                    <a href="#" className="text-pink-500 hover:text-pink-700 transition-colors">Terms of Use</a>
-                    <a href="#" className="text-pink-500 hover:text-pink-700 transition-colors">Contact Us</a>
+                    <a href="#" className="text-violet-500 hover:text-violet-700 transition-colors duration-200">Privacy Policy</a>
+                    <a href="#" className="text-violet-500 hover:text-violet-700 transition-colors duration-200">Terms of Use</a>
+                    <a href="#" className="text-violet-500 hover:text-violet-700 transition-colors duration-200">Contact Us</a>
                   </div>
-                  <p className="text-pink-400 text-sm">© 2025 Women's Wellness Remedies</p>
+                  <p className="text-violet-400 text-sm">© 2025 Women's Wellness Remedies</p>
                 </div>
               </footer>
             </>
@@ -751,27 +746,27 @@ const Remedies = () => {
 const RecipeCard = ({ recipe, categoryIcon, isFavorite, onToggleFavorite, onClick, animationDelay = 0 }) => {
   return (
     <div 
-      className="bg-white rounded-lg shadow-sm hover:shadow-md overflow-hidden transition-all cursor-pointer transform hover:-translate-y-1 animate-fadeIn "
+      className="bg-white rounded-xl shadow-sm hover:shadow-lg overflow-hidden transition-all duration-300 cursor-pointer transform hover:-translate-y-2 animate-fadeIn"
       style={{ animationDelay: `${animationDelay}s` }}
       onClick={onClick}
     >
-      <div className="bg-gradient-to-r from-pink-100 to-pink-200 p-4 relative">
+      <div className="bg-gradient-to-r from-violet-100 to-pink-100 p-4 relative">
         <button 
-          className="absolute right-4 top-4 z-10 bg-white bg-opacity-70 rounded-full p-1.5 shadow-sm hover:shadow transition-all"
+          className="absolute right-4 top-4 z-10 bg-white bg-opacity-80 rounded-full p-1.5 shadow-sm hover:shadow-md transition-all duration-200"
           onClick={onToggleFavorite}
           aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
         >
           <Star 
             size={16} 
-            className={`${isFavorite ? 'fill-yellow-400 text-yellow-400' : 'text-pink-600'} transition-all`} 
+            className={`${isFavorite ? 'fill-yellow-400 text-yellow-400' : 'text-violet-600'} transition-all duration-200`} 
           />
         </button>
         
-        <h3 className="text-lg font-bold text-pink-800 flex items-center pr-8">
+        <h3 className="text-lg font-semibold text-violet-800 flex items-center pr-8">
           <span className="mr-2">{categoryIcon}</span> 
           {recipe.title}
         </h3>
-        <p className="text-pink-600 text-xs flex items-center mt-1">
+        <p className="text-violet-600 text-xs flex items-center mt-1">
           <Clock size={12} className="mr-1" /> {recipe.prepTime}
         </p>
       </div>
@@ -779,12 +774,12 @@ const RecipeCard = ({ recipe, categoryIcon, isFavorite, onToggleFavorite, onClic
       <div className="p-4">
         <div className="max-h-24 overflow-hidden relative">
           <div className="mb-2">
-            <h4 className="font-medium text-pink-700 text-sm mb-1">Ingredients:</h4>
+            <h4 className="font-medium text-violet-700 text-sm mb-1">Ingredients:</h4>
             <p className="text-gray-600 text-sm truncate">{recipe.ingredients.join(", ")}</p>
           </div>
           
           <div>
-            <h4 className="font-medium text-pink-700 text-sm mb-1">Benefits:</h4>
+            <h4 className="font-medium text-violet-700 text-sm mb-1">Benefits:</h4>
             <p className="text-gray-600 text-sm line-clamp-2">{recipe.benefits}</p>
           </div>
           
@@ -792,8 +787,8 @@ const RecipeCard = ({ recipe, categoryIcon, isFavorite, onToggleFavorite, onClic
         </div>
         
         <div className="mt-4 flex justify-between items-center">
-          <span className="text-xs text-pink-500">{recipe.ingredients.length} ingredients</span>
-          <div className="flex items-center text-pink-600 hover:text-pink-800 text-sm font-medium transition-colors">
+          <span className="text-xs text-violet-500">{recipe.ingredients.length} ingredients</span>
+          <div className="flex items-center text-violet-600 hover:text-violet-800 text-sm font-medium transition-colors duration-200">
             View details
             <ChevronRight size={16} className="ml-1" />
           </div>
@@ -811,29 +806,29 @@ const DetailedRecipeView = ({ recipe, categoryIcon, isFavorite, onToggleFavorite
     <div className="animate-fadeIn">
       <button 
         onClick={onBack}
-        className="flex items-center text-pink-600 hover:text-pink-800 mb-4 transition-colors"
+        className="flex items-center text-violet-600 hover:text-violet-800 mb-6 transition-colors duration-200"
       >
         <ArrowLeft size={16} className="mr-1" />
         Back to Remedies
       </button>
       
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
+      <div className="bg-white rounded-xl shadow-md overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-pink-600 to-purple-600 p-6 relative text-white">
+        <div className="bg-gradient-to-r from-violet-600 to-pink-600 p-6 relative text-white">
           <button 
-            className="absolute right-4 top-4 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-2 transition-all"
+            className="absolute right-4 top-4 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-2 transition-all duration-200"
             onClick={onToggleFavorite}
             aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
           >
             <Star 
               size={20} 
-              className={`${isFavorite ? 'fill-yellow-400 text-yellow-400' : 'text-white'} transition-all`} 
+              className={`${isFavorite ? 'fill-yellow-400 text-yellow-400' : 'text-white'} transition-all duration-200`} 
             />
           </button>
           
           <div className="flex items-center mb-2">
             <span className="text-2xl mr-2">{categoryIcon}</span>
-            <span className="text-pink-200 font-medium">
+            <span className="text-violet-200 font-medium">
               {recipe.category && healthCategories.find(c => c.id === recipe.category)?.name}
             </span>
           </div>
@@ -847,21 +842,21 @@ const DetailedRecipeView = ({ recipe, categoryIcon, isFavorite, onToggleFavorite
         </div>
         
         {/* Navigation tabs */}
-        <div className="flex border-b border-gray-200">
+        <div className="flex border-b border-violet-100">
           <button 
-            className={`flex-1 py-3 px-4 text-center font-medium transition-colors ${activeSection === 'instructions' ? 'text-pink-700 border-b-2 border-pink-600' : 'text-gray-500 hover:text-pink-600'}`}
+            className={`flex-1 py-3 px-4 text-center font-medium transition-colors duration-200 ${activeSection === 'instructions' ? 'text-violet-700 border-b-2 border-violet-600' : 'text-gray-500 hover:text-violet-600'}`}
             onClick={() => setActiveSection('instructions')}
           >
             Instructions
           </button>
           <button 
-            className={`flex-1 py-3 px-4 text-center font-medium transition-colors ${activeSection === 'ingredients' ? 'text-pink-700 border-b-2 border-pink-600' : 'text-gray-500 hover:text-pink-600'}`}
+            className={`flex-1 py-3 px-4 text-center font-medium transition-colors duration-200 ${activeSection === 'ingredients' ? 'text-violet-700 border-b-2 border-violet-600' : 'text-gray-500 hover:text-violet-600'}`}
             onClick={() => setActiveSection('ingredients')}
           >
             Ingredients
           </button>
           <button 
-            className={`flex-1 py-3 px-4 text-center font-medium transition-colors ${activeSection === 'benefits' ? 'text-pink-700 border-b-2 border-pink-600' : 'text-gray-500 hover:text-pink-600'}`}
+            className={`flex-1 py-3 px-4 text-center font-medium transition-colors duration-200 ${activeSection === 'benefits' ? 'text-violet-700 border-b-2 border-violet-600' : 'text-gray-500 hover:text-violet-600'}`}
             onClick={() => setActiveSection('benefits')}
           >
             Benefits
@@ -872,13 +867,13 @@ const DetailedRecipeView = ({ recipe, categoryIcon, isFavorite, onToggleFavorite
         <div className="p-6">
           {activeSection === 'instructions' && (
             <div className="animate-fadeIn">
-              <h2 className="text-lg font-bold text-pink-800 mb-4">How to Prepare</h2>
-              <div className="bg-pink-50 p-4 rounded-lg border border-pink-100 mb-6">
+              <h2 className="text-lg font-bold text-violet-800 mb-4">How to Prepare</h2>
+              <div className="bg-violet-50 p-4 rounded-lg border border-violet-100 mb-6">
                 <p className="text-gray-800">{recipe.instructions}</p>
               </div>
               
-              <div className="bg-pink-50 p-4 rounded-lg border border-pink-100">
-                <h3 className="text-pink-700 font-medium mb-2 flex items-center">
+              <div className="bg-violet-50 p-4 rounded-lg border border-violet-100">
+                <h3 className="text-violet-700 font-medium mb-2 flex items-center">
                   <Info size={16} className="mr-2" />
                   Tips for Best Results
                 </h3>
@@ -894,12 +889,12 @@ const DetailedRecipeView = ({ recipe, categoryIcon, isFavorite, onToggleFavorite
           
           {activeSection === 'ingredients' && (
             <div className="animate-fadeIn">
-              <h2 className="text-lg font-bold text-pink-800 mb-4">Ingredients</h2>
-              <div className="bg-pink-50 p-4 rounded-lg border border-pink-100 mb-6">
+              <h2 className="text-lg font-bold text-violet-800 mb-4">Ingredients</h2>
+              <div className="bg-violet-50 p-4 rounded-lg border border-violet-100 mb-6">
                 <ul className="space-y-3">
                   {recipe.ingredients.map((ingredient, i) => (
                     <li key={i} className="flex items-start">
-                      <div className="w-6 h-6 rounded-full bg-pink-200 flex items-center justify-center text-pink-700 font-medium mr-3 mt-0.5">
+                      <div className="w-6 h-6 rounded-full bg-violet-200 flex items-center justify-center text-violet-700 font-medium mr-3 mt-0.5">
                         {i+1}
                       </div>
                       <span className="text-gray-800">{ingredient}</span>
@@ -908,8 +903,8 @@ const DetailedRecipeView = ({ recipe, categoryIcon, isFavorite, onToggleFavorite
                 </ul>
               </div>
               
-              <div className="bg-pink-50 p-4 rounded-lg border border-pink-100">
-                <h3 className="text-pink-700 font-medium mb-2 flex items-center">
+              <div className="bg-violet-50 p-4 rounded-lg border border-violet-100">
+                <h3 className="text-violet-700 font-medium mb-2 flex items-center">
                   <Info size={16} className="mr-2" />
                   Ingredient Substitutions
                 </h3>
@@ -924,20 +919,20 @@ const DetailedRecipeView = ({ recipe, categoryIcon, isFavorite, onToggleFavorite
           
           {activeSection === 'benefits' && (
             <div className="animate-fadeIn">
-              <h2 className="text-lg font-bold text-pink-800 mb-4">Health Benefits</h2>
-              <div className="bg-pink-50 p-4 rounded-lg border border-pink-100 mb-6">
+              <h2 className="text-lg font-bold text-violet-800 mb-4">Health Benefits</h2>
+              <div className="bg-violet-50 p-4 rounded-lg border border-violet-100 mb-6">
                 <p className="text-gray-800">{recipe.benefits}</p>
               </div>
               
-              <div className="bg-pink-50 p-4 rounded-lg border border-pink-100">
-                <h3 className="text-pink-700 font-medium mb-2 flex items-center">
+              <div className="bg-violet-50 p-4 rounded-lg border border-violet-100">
+                <h3 className="text-violet-700 font-medium mb-2 flex items-center">
                   <CircleHelpIcon size={16} className="mr-2" />
                   When to Use This Remedy
                 </h3>
                 <p className="text-gray-700 mb-4">This remedy works best when used consistently at the first sign of symptoms. Results may vary between individuals.</p>
                 
-                <div className="bg-white p-3 rounded border border-pink-200">
-                  <p className="text-pink-700 text-sm italic">Remember: Always consult with a healthcare professional for persistent or severe symptoms.</p>
+                <div className="bg-white p-3 rounded border border-violet-200">
+                  <p className="text-violet-700 text-sm italic">Remember: Always consult with a healthcare professional for persistent or severe symptoms.</p>
                 </div>
               </div>
             </div>
@@ -950,24 +945,24 @@ const DetailedRecipeView = ({ recipe, categoryIcon, isFavorite, onToggleFavorite
 
 // Additional components
 const Clock = ({ size = 24, className }) => {
-    return (
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        width={size} 
-        height={size} 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
-        className={className}
-      >
-        <circle cx="12" cy="12" r="10" />
-        <line x1="12" y1="6" x2="12" y2="12" />
-        <line x1="12" y1="12" x2="16" y2="14" />
-      </svg>
-    );
-  }
+  return (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width={size} 
+      height={size} 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
+      className={className}
+    >
+      <circle cx="12" cy="12" r="10" />
+      <line x1="12" y1="6" x2="12" y2="12" />
+      <line x1="12" y1="12" x2="16" y2="14" />
+    </svg>
+  );
+}
 
 export default Remedies;

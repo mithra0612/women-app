@@ -195,6 +195,38 @@ app.post("/chat-gemini2", async (req, res) => {
   res.json({ reply });
 });
 
+app.get("/api/hospitals", async (req, res) => {
+  const { lat, lon } = req.query;
+
+  if (!lat || !lon) {
+    return res.status(400).json({ error: "Latitude and Longitude are required" });
+  }
+
+  try {
+    const response = await axios.get("https://api.geoapify.com/v2/places", {
+      params: {
+        categories: "healthcare.hospital",
+        filter: `circle:${lon},${lat},5000`, // 5km radius
+        bias: `proximity:${lon},${lat}`,
+        limit: 10,
+        apiKey: process.env.GEOAPIFY_API_KEY, // Store your Geoapify API Key in .env
+      },
+    });
+
+    const hospitals = response.data.features.map((hospital) => ({
+      id: hospital.properties.place_id,
+      name: hospital.properties.name,
+      address: hospital.properties.formatted || "Address not available",
+    }));
+
+    res.json(hospitals);
+  } catch (error) {
+    console.error("Error fetching hospitals:", error.response?.data || error.message);
+    res.status(500).json({ error: "Failed to fetch hospital data" });
+  }
+});
+
+
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

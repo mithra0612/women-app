@@ -483,7 +483,7 @@ function Chatbot() {
                       ></span>
                     </div>
                     <span className="text-xs text-green-800">
-                      Preparing Tamil cuisine diet advice with Gemini 2.0...
+                      Preparing Tamil cuisine diet advice ...
                     </span>
                   </div>
                 </div>

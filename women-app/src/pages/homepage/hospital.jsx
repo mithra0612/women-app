@@ -22,7 +22,7 @@ const Hospitals = () => {
 
         try {
           const response = await fetch(
-            `http://localhost:8080/api/hospitals?lat=${latitude}&lon=${longitude}`
+            `http://localhost:5000/api/hospitals?lat=${latitude}&lon=${longitude}`
           );
 
           if (!response.ok) {

@@ -1,7 +1,8 @@
- import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
- import Sidebar from "./components/Sidebar/Sidebar";
- import Chatbot from "./pages/homepage/AI_diet_planner";
+import React from "react";
+import { Routes, Route, useLocation, useNavigate, Navigate } from "react-router-dom";
+import Sidebar from "./components/Sidebar/Sidebar";
+import Chatbot from "./pages/homepage/AI_diet_planner";
+import LandingPage from "./pages/homepage/homepage"; 
 
 import ReproductivePhenomenas from "./pages/homepage/ReproductivePhenomena";
 import Maternals from "./pages/homepage/maternal";
@@ -32,21 +33,21 @@ import Reproductives from "./pages/homepage/reproductive";
 import Breasts from "./pages/homepage/breast";
 import Mentals from "./pages/homepage/mental";
 import Menopauses from "./pages/homepage/menopause";
-import { ThemeProvider } from './context/ThemeContext';
 import FloatingChatbot from "./pages/homepage/FloatingChatbot";
 
 function App() {
   const location = useLocation();
-
-  // Hide Sidebar when navigating to Community Forum
-  const hideSidebarPaths = ["/community-forum"];
+  const hideSidebarPaths = ["/", "/community-forum"];  // Added "/" to hide sidebar on homepage
 
   return (
-    <div className="flex ">
+    <div className="flex">
       {!hideSidebarPaths.includes(location.pathname) && <Sidebar />}
-      <div className="flex-1 p-4">
-        <ThemeProvider>
+      <div className={location.pathname === "/" ? "w-full" : "flex-1 p-4"}>
         <Routes>
+          {/* Homepage */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/" element={<LandingPage />} />
+          
           {/* Main Pages */}
           <Route path="/reproductive-phenomena" element={<ReproductivePhenomenas />} />
           <Route path="/maternal-health" element={<Maternals />} />
@@ -59,10 +60,19 @@ function App() {
           <Route path="/period-tracker" element={<PeriodTrackers />} />
           <Route path="/pregnancy-tracker" element={<PregnancyTrackers />} />
           <Route path="/remedies" element={<Remedies />} />
-
+          <Route path="/ai-diet" element={<Chatbot />} />  
+          
           {/* Spinner and its Subcategories */}
           <Route path="/spinner" element={<Spinners />} />
 
+          {/* Additional routes for direct access */}
+          <Route path="/breast" element={<Breasts />} />
+          <Route path="/periods" element={<Periods />} />
+          <Route path="/pregnancy" element={<Pregnancys />} />
+          <Route path="/hormonal" element={<Hormonals />} />
+          <Route path="/reproductive" element={<Reproductives />} />
+          <Route path="/mental" element={<Mentals />} />
+          <Route path="/menopause" element={<Menopauses />} />
           {/* Additional routes for direct access */}
           <Route path="/breast" element={<Breasts />} />
           <Route path="/periods" element={<Periods />} />
@@ -75,9 +85,12 @@ function App() {
           <Route path="/schemes" element={<Schemes />} />
           <Route path="/community-forum" element={<CommunityForums />} />
           <Route path="/help" element={<Helps />} />
+          <Route path="/schemes" element={<Schemes />} />
+          <Route path="/community-forum" element={<CommunityForums />} />
+          <Route path="/help" element={<Helps />} />
 
           {/* Disposal Methods and Subpages */}
-          <Route path="/" element={<Disposals />} />
+          <Route path="/disposals" element={<Disposals />} />
           <Route path="/disposals/flush" element={<Flushs />} />
           <Route path="/disposals/burn" element={<Burns />} />
           <Route path="/disposals/wrap" element={<Wraps />} />
@@ -85,17 +98,11 @@ function App() {
           <Route path="/disposals/openwaste" element={<Openwastes />} />
           <Route path="/disposals/recycle" element={<Recycles />} />
         </Routes>
-        </ThemeProvider >
       </div>
-      <FloatingChatbot/>
+      {location.pathname !== "/" && <FloatingChatbot/>}  {/* Hide chatbot on homepage */}
     </div>
   );
 }
 
 export default App;
 
-
-//  const App = () => {
-//    return <Chatbot />;
-// };
-// export default App;
