@@ -30,86 +30,9 @@ import I5 from '../../assets/i5.jpg';
 import Sidebar from '../../components/Sidebar/Sidebar';
 
 const Sanitarys = () => {
-  const [activeTab, setActiveTab] = useState('videos');
   const [activeGuide, setActiveGuide] = useState(null);
   const [currentStep, setCurrentStep] = useState(1);
-  const [selectedVideo, setSelectedVideo] = useState(null);
   const scrollRef = useRef(null);
-
-  const educationalVideos = [
-    {
-      id: 'J6bZsI1pi_o',
-      title: 'Understanding Menstrual Products',
-      thumbnail: "https://img.youtube.com/vi/J6bZsI1pi_o/maxresdefault.jpg",
-      category: 'Getting Started'
-    },
-    {
-      id: 'ImzxzlPzbRk',
-      title: 'What should I do when I get my first period?',
-      thumbnail: "https://img.youtube.com/vi/ImzxzlPzbRk/maxresdefault.jpg",
-      category: 'Getting Started'
-    },
-    {
-      id: '6UykBMEEtRw',
-      title: 'How to Use Tampons',
-      thumbnail: "https://img.youtube.com/vi/6UykBMEEtRw/maxresdefault.jpg",
-      category: 'Product Types'
-    },
-    {
-      id: 'o9fPUfm-uYE',
-      title: 'Menstrual cup Usage Guide',
-      thumbnail: "https://img.youtube.com/vi/o9fPUfm-uYE/maxresdefault.jpg",
-      category: 'How-To Guides'
-    },
-    {
-      id: 'Xmh1GfY3k2E',
-      title: 'Menstrual cup & Disc Usage Guide',
-      thumbnail: "https://img.youtube.com/vi/Xmh1GfY3k2E/maxresdefault.jpg",
-      category: 'How-To Guides'
-    },
-    {
-      id: 'oAuvNxCnWOw',
-      title: 'Sustainable Period Products',
-      thumbnail: "https://img.youtube.com/vi/oAuvNxCnWOw/maxresdefault.jpg",
-      category: 'Product Types'
-    },
-    {
-      id: 'Dgo7oF5Nkoc',
-      title: 'Best period products',
-      thumbnail: "https://img.youtube.com/vi/Dgo7oF5Nkoc/maxresdefault.jpg",
-      category: 'Wellness Tips'
-    },
-    {
-      id: 'tc94nhKqBfE',
-      title: '5 Tips for periods',
-      thumbnail: "https://img.youtube.com/vi/tc94nhKqBfE/maxresdefault.jpg",
-      category: 'Wellness Tips'
-    },
-    {
-      id: 'UBhiwkM8MIY',
-      title: 'Menstrual Hygiene Basics',
-      thumbnail: "https://img.youtube.com/vi/UBhiwkM8MIY/maxresdefault.jpg",
-      category: 'Getting Started'
-    },
-    {
-      id: 'tU4VCXakbyQ',
-      title: 'How to Choose Period Products',
-      thumbnail: "https://img.youtube.com/vi/tU4VCXakbyQ/maxresdefault.jpg",
-      category: 'Product Types'
-    },
-    {
-      id: 'LIsYbDCMfDc',
-      title: 'Period Pain Relief Tips',
-      thumbnail: "https://img.youtube.com/vi/LIsYbDCMfDc/maxresdefault.jpg",
-      category: 'Wellness Tips'
-    },
-    {
-      id: 'pP7RlM_QpmI',
-      title: 'How to Clean Reusable Period Products',
-      thumbnail: "https://img.youtube.com/vi/pP7RlM_QpmI/maxresdefault.jpg",
-      category: 'How-To Guides'
-    }
-  ];
 
   const infographicGuides = [
     {
@@ -197,22 +120,6 @@ const Sanitarys = () => {
     }
   ];
 
-  const getVideosByCategory = (category) => {
-    return educationalVideos.filter(video => video.category === category);
-  };
-
-  const categories = [...new Set(educationalVideos.map(video => video.category))];
-
-  const openVideo = (videoId) => {
-    setSelectedVideo(videoId);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeVideo = () => {
-    setSelectedVideo(null);
-    document.body.style.overflow = 'auto';
-  };
-
   const openGuide = (guideId) => {
     setActiveGuide(guideId);
     setCurrentStep(1);
@@ -254,127 +161,42 @@ const Sanitarys = () => {
           <h1 className="text-3xl font-bold text-purple-800 mb-2">Sanitary Products Education</h1>
           <p className="text-gray-600 mb-6">Learn everything you need to know about menstrual products and how to use them.</p>
           
-          <div className="flex space-x-2 mb-6">
-            <button
-              className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${activeTab === 'videos' ? 'bg-purple-600 text-white shadow-md' : 'bg-white text-purple-600 hover:bg-purple-100'}`}
-              onClick={() => setActiveTab('videos')}
-            >
-              Video Guides
-            </button>
-            <button
-              className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${activeTab === 'infographic' ? 'bg-purple-600 text-white shadow-md' : 'bg-white text-purple-600 hover:bg-purple-100'}`}
-              onClick={() => setActiveTab('infographic')}
-            >
-              Product Guides
-            </button>
-          </div>
-
-          {activeTab === 'videos' && (
-            <div className="mt-6 transition-all duration-500 ease-in-out">
-              {categories.map(category => (
-                <div key={category} className="mb-10">
-                  <h2 className="text-xl font-semibold text-purple-700 mb-4">{category}</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {getVideosByCategory(category).map(video => (
-                      <div key={video.id} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 transition-transform duration-300 group">
-                        <div className="relative pb-[56.25%] overflow-hidden">
-                          <img
-                            src={video.thumbnail}
-                            alt={video.title}
-                            className="absolute w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                          />
-                          <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button
-                              className="bg-white bg-opacity-90 text-purple-700 rounded-full p-3 transform hover:scale-110 transition-transform duration-300 scale-75 group-hover:scale-100"
-                              onClick={() => openVideo(video.id)}
-                            >
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                              </svg>
-                            </button>
-                          </div>
-                        </div>
-                        <div
-                          className="p-4 cursor-pointer"
-                          onClick={() => openVideo(video.id)}
-                        >
-                          <h3 className="font-medium text-lg text-purple-800 mb-2">{video.title}</h3>
-                          <p className="text-gray-600 text-sm">Learn about proper usage techniques and health tips</p>
-                        </div>
+          <div className="mx-auto transition-all duration-500 ease-in-out">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {infographicGuides.map(guide => (
+                <div
+                  key={guide.id}
+                  className="relative h-64 rounded-2xl overflow-hidden shadow-lg cursor-pointer transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group"
+                  onClick={() => guide.steps.length > 0 && openGuide(guide.id)}
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${guide.color} opacity-90`}></div>
+                  <div className="absolute inset-0 p-6 flex flex-col justify-between text-white">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h3 className="text-2xl font-bold mb-2">{guide.title}</h3>
+                        <p className="text-white text-opacity-90">{guide.description}</p>
                       </div>
-                    ))}
+                      <div className="bg-white bg-opacity-20 p-2 rounded-lg">
+                        {guide.icon}
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="bg-white text-gray-800 rounded-full px-4 py-1 text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                        {guide.steps.length > 0 ? 'Start Guide' : 'Coming Soon'}
+                      </span>
+                      <span className="bg-white bg-opacity-20 rounded-full flex items-center justify-center w-10 h-10 group-hover:bg-white group-hover:text-purple-600 transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </span>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
-          )}
-
-          {activeTab === 'infographic' && (
-            <div className="mx-auto transition-all duration-500 ease-in-out">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {infographicGuides.map(guide => (
-                  <div
-                    key={guide.id}
-                    className="relative h-64 rounded-2xl overflow-hidden shadow-lg cursor-pointer transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group"
-                    onClick={() => guide.steps.length > 0 && openGuide(guide.id)}
-                  >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${guide.color} opacity-90`}></div>
-                    <div className="absolute inset-0 p-6 flex flex-col justify-between text-white">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <h3 className="text-2xl font-bold mb-2">{guide.title}</h3>
-                          <p className="text-white text-opacity-90">{guide.description}</p>
-                        </div>
-                        <div className="bg-white bg-opacity-20 p-2 rounded-lg">
-                          {guide.icon}
-                        </div>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="bg-white text-gray-800 rounded-full px-4 py-1 text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                          {guide.steps.length > 0 ? 'Start Guide' : 'Coming Soon'}
-                        </span>
-                        <span className="bg-white bg-opacity-20 rounded-full flex items-center justify-center w-10 h-10 group-hover:bg-white group-hover:text-purple-600 transition-all duration-300">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {selectedVideo && (
-        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
-          <div className="w-full max-w-5xl max-h-screen">
-            <div className="flex justify-end mb-4">
-              <button
-                className="text-white hover:text-purple-300 focus:outline-none transition-colors duration-300"
-                onClick={closeVideo}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1`}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
           </div>
         </div>
-      )}
+      </div>
 
       {activeGuide && (
         <div className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4">
