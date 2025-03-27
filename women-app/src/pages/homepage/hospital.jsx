@@ -22,7 +22,7 @@ const Hospitals = () => {
 
         try {
           const response = await fetch(
-            `http://localhost:5000/api/hospitals?lat=${latitude}&lon=${longitude}`
+            `https://women-app.onrender.com/api/hospitals?lat=${latitude}&lon=${longitude}`
           );
 
           if (!response.ok) {

@@ -12,6 +12,26 @@ import {
   Bookmark,
 } from "lucide-react";
 
+// Add SkeletonCard component
+const SkeletonCard = () => (
+  <div className="border rounded-xl p-6 shadow-md bg-white animate-pulse">
+    <div className="w-full h-full flex flex-col justify-between">
+      <div className="flex flex-col gap-2">
+        <div className="w-6 h-6 bg-gray-200 rounded-full"></div>
+        <div className="h-6 bg-gray-200 rounded w-3/4"></div>
+        <div className="space-y-2 mt-2">
+          <div className="h-4 bg-gray-200 rounded w-full"></div>
+          <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+        </div>
+      </div>
+      <div className="mt-4 flex items-center">
+        <div className="h-4 bg-gray-200 rounded w-20"></div>
+        <div className="w-4 h-4 bg-gray-200 rounded ml-1"></div>
+      </div>
+    </div>
+  </div>
+);
+
 const CategoryBadge = ({ children, active, onClick }) => (
   <button
     onClick={onClick}
@@ -30,26 +50,18 @@ const Modal = ({ isOpen, onClose, scheme }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-md px-4">
-      {/* Clickable background overlay */}
       <div className="absolute inset-0 cursor-pointer" onClick={onClose} />
-
-      {/* Modal Content */}
       <div className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-6 md:px-8 animate-fadeIn scale-105">
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute right-5 top-5 text-gray-500 hover:text-gray-700 transition"
         >
           <X size={26} />
         </button>
-
-        {/* Modal Header */}
         <div className="text-center mb-4">
           <h2 className="text-3xl font-bold text-pink-700">{scheme.title}</h2>
           <p className="text-gray-500 text-lg mt-1">{scheme.description}</p>
         </div>
-
-        {/* Key Details in a Grid */}
         <div className="bg-gray-100 rounded-lg p-4 grid grid-cols-2 gap-4 text-gray-700">
           <div className="flex items-center gap-2">
             <Bookmark size={20} className="text-pink-600" />
@@ -62,8 +74,6 @@ const Modal = ({ isOpen, onClose, scheme }) => {
             <p className="text-gray-900">{scheme.eligibility}</p>
           </div>
         </div>
-
-        {/* Benefits List */}
         <div className="mt-5">
           <h3 className="text-lg font-semibold text-gray-800">Benefits</h3>
           <ul className="mt-2 space-y-2">
@@ -75,8 +85,6 @@ const Modal = ({ isOpen, onClose, scheme }) => {
             ))}
           </ul>
         </div>
-
-        {/* CTA Button */}
         <div className="mt-6 text-center">
           <a
             href={scheme.link}
@@ -108,7 +116,7 @@ const SchemeCard = ({ scheme, onClick }) => {
       onClick={onClick}
       className="group border rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer bg-white hover:bg-gray-50 relative overflow-hidden"
     >
-      <div className=" w-full h-full flex flex-col justify-between transition-colors duration-300  ">
+      <div className="w-full h-full flex flex-col justify-between transition-colors duration-300">
         <div className="flex flex-col gap-2">
           {getIcon()}
           <h3 className="text-xl font-semibold text-black group-hover:text-pink-600 transition-colors duration-300">
@@ -136,11 +144,10 @@ const Schemes = ({ collapsed }) => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [filteredSchemes, setFilteredSchemes] = useState([]);
 
-  // Fetch schemes data
   useEffect(() => {
     const fetchSchemes = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/schemes");
+        const response = await fetch("https://women-app.onrender.com/api/schemes");
         if (!response.ok) {
           throw new Error("Failed to fetch schemes");
         }
@@ -176,27 +183,17 @@ const Schemes = ({ collapsed }) => {
     "Child Welfare",
   ];
 
-  // Filter schemes based on search term and category
   useEffect(() => {
     const filtered = schemes.filter((scheme) => {
-      // Match search term
       const matchesSearch =
         scheme.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         scheme.description.toLowerCase().includes(searchTerm.toLowerCase());
-
-      // Match category
       const matchesCategory =
         selectedCategory === "All" || scheme.category === selectedCategory;
-
       return matchesSearch && matchesCategory;
     });
-
     setFilteredSchemes(filtered);
   }, [searchTerm, selectedCategory, schemes]);
-
-  if (loading) return <div className="text-center py-12">Loading...</div>;
-  if (error)
-    return <div className="text-center py-12 text-red-500">{error}</div>;
 
   return (
     <div
@@ -244,16 +241,21 @@ const Schemes = ({ collapsed }) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSchemes.map((scheme) => (
-            <SchemeCard
-              key={scheme.id}
-              scheme={scheme}
-              onClick={() => setSelectedScheme(scheme)}
-            />
-          ))}
+          {loading ? (
+            // Show skeleton cards while loading
+            Array(6).fill(0).map((_, index) => <SkeletonCard key={index} />)
+          ) : (
+            filteredSchemes.map((scheme) => (
+              <SchemeCard
+                key={scheme.id}
+                scheme={scheme}
+                onClick={() => setSelectedScheme(scheme)}
+              />
+            ))
+          )}
         </div>
 
-        {filteredSchemes.length === 0 && !loading && (
+        {!loading && filteredSchemes.length === 0 && (
           <div className="text-center py-12">
             <p className="text-gray-500 text-lg">
               No schemes found matching your criteria

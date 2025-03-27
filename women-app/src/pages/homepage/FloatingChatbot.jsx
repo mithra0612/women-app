@@ -113,7 +113,7 @@ const FloatingChatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/chat", {
+      const response = await axios.post("https://women-app.onrender.com/chat-gemini", {
         chat: formattedMessage, // Send formatted message to API
         history: chatHistory,
       });

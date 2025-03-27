@@ -176,7 +176,7 @@ function Chatbot() {
         prompt += " Ensure all dishes are strictly vegetarian.";
       }
 
-      const response = await axios.post("http://localhost:5000/chat-gemini2", {
+      const response = await axios.post("https://women-app.onrender.com/chat-gemini2", {
         message: prompt,
       });
 

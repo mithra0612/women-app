@@ -25,6 +25,10 @@ import {
   Utensils,
   Bell,
   IndianRupee,
+  Clock,
+  Activity,
+  PenTool,
+  Lightbulb,
 } from "lucide-react";
 
 const LandingPage = () => {
@@ -109,7 +113,7 @@ const LandingPage = () => {
       icon: <IndianRupee className="w-12 h-12 text-purple-700" />,
       bg: "bg-purple-100",
       shape: <Triangle className="w-24 h-24 text-purple-300 absolute -bottom-8 -left-8 opacity-50" />,
-      stats: ["Step-by-Step Guides", "Application Help", "Direct Access"],
+      stats: ["Benefits","Direct Access","Eligibility guidance"],
       color: "from-indigo-500 to-blue-500",
     },
   ];
@@ -117,10 +121,15 @@ const LandingPage = () => {
   // Dynamic stats
   const stats = [
     { value: "Health", label: "Evidence-Based Content", icon: <BookOpen className="h-5 w-5" /> },
-    { value: "AI", label: "Personalized Planning", icon: <CalendarCheck className="h-5 w-5" /> },
-    { value: "24/7", label: "Interactive Support", icon: <MessageCircle className="h-5 w-5" /> },
-    { value: "Tamil", label: "Cultural Relevance", icon: <Heart className="h-5 w-5" /> },
-  ];
+    { value: "AI", label: "Personalized Diet Recommendations", icon: <CalendarCheck className="h-5 w-5" /> },
+    { value: "Support", label: "24/7 Interactive Chatbot", icon: <MessageCircle className="h-5 w-5" /> },
+    { value: "Culture", label: "Tamil Nadu Cuisine-Based Nutrition", icon: <Heart className="h-5 w-5" /> },
+    { value: "Tracking", label: "Period & Ovulation Tracker", icon: <Clock className="h-5 w-5" /> },
+    { value: "Community", label: "Safe Space for Discussions", icon: <Users className="h-5 w-5" /> },
+    { value: "Education", label: "Blogs on Stigmatized Topics", icon: <PenTool className="h-5 w-5" /> },
+    { value: "Awareness", label: "Myth Busting & Facts", icon: <Lightbulb className="h-5 w-5" /> },
+];
+
 
   // Animation variants
   const entryAnimation = {
@@ -335,7 +344,7 @@ const LandingPage = () => {
             animate="visible"
             className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300 leading-tight md:leading-snug"
           >
-            Empowering Women Through Knowledge
+            Empowering Women Through Health and Wellness Knowledge
           </motion.h1>
           
           <motion.p
@@ -575,22 +584,7 @@ const LandingPage = () => {
                     ))}
                   </div>
                   
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={activeFeature === i ? { opacity: 1, y: 0 } : {}}
-                    className="mt-8 flex justify-center"
-                  >
-                    <Link to={`/${feature.title.toLowerCase().replace(/\s+/g, '-')}`}>
-                      <button className={`px-6 py-2 rounded-full text-sm font-medium flex items-center ${
-                        theme === "dark" 
-                          ? "bg-purple-700 text-white hover:bg-purple-600" 
-                          : "bg-purple-100 text-purple-900 hover:bg-purple-200"
-                      }`}>
-                        Learn more
-                        <ArrowUpRight className="ml-2 w-4 h-4" />
-                      </button>
-                    </Link>
-                  </motion.div>
+                  
                 </div>
                 
                 {feature.shape}
@@ -780,7 +774,7 @@ const LandingPage = () => {
                       transition={{ delay: 0.3 }}
                       className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
                     >
-                      <Link to="/signup">
+                      <Link to="/reproductive-phenomena">
                         <motion.button
                           whileHover={{ scale: 1.03, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
                           whileTap={{ scale: 0.97 }}
@@ -797,7 +791,7 @@ const LandingPage = () => {
                         </motion.button>
                       </Link>
                       
-                      <Link to="/learn-more">
+                      <Link to="/reproductive-phenomena">
                         <motion.button
                           whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.97 }}

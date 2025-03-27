@@ -111,6 +111,32 @@ app.post("/stream", async (req, res) => {
   }
 });
 
+app.post("/chat", async (req, res) => {
+  try {
+    const { message, history } = req.body; // Extract user message and chat history
+
+    if (!message) {
+      return res.status(400).json({ error: "Message is required" });
+    }
+
+    const botResponse = await getGemini2Response(message, history);
+
+    const updatedHistory = [
+      ...history,
+      { role: "user", text: message },
+      { role: "bot", text: botResponse },
+    ];
+
+    res.json({ reply: botResponse, history: updatedHistory });
+  } catch (error) {
+    console.error("Error processing chat:", error);
+    res.status(500).json({ error: "Something went wrong. Please try again." });
+  }
+});
+
+
+
+
 // Function to get Gemini-2.0 response (from second code)
 async function getGemini2Response(userMessage) {
   try {

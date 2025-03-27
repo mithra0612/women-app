@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Search,
   Play,
@@ -21,13 +21,38 @@ import menopause1 from "../../assets/reproductivePhenomena/menopause1.png";
 import menopause2 from "../../assets/reproductivePhenomena/menopause2.png";
 import menopause3 from "../../assets/reproductivePhenomena/menopause3.png";
 
+const BlogSkeleton = () => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {[1, 2, 3, 4, 5, 6].map((item) => (
+        <div
+          key={item}
+          className="bg-white rounded-lg shadow-md overflow-hidden animate-pulse"
+        >
+          <div className="h-48 bg-gray-300"></div>
+          <div className="p-4">
+            <div className="h-4 bg-gray-300 rounded w-1/2 mb-2"></div>
+            <div className="h-6 bg-gray-300 rounded w-3/4 mb-2"></div>
+            <div className="h-4 bg-gray-300 rounded w-full mb-4"></div>
+            <div className="flex justify-between">
+              <div className="h-4 bg-gray-300 rounded w-1/4"></div>
+              <div className="h-4 bg-gray-300 rounded w-1/4"></div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const ReproductivePhenomenas = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
   const [modalContent, setModalContent] = useState(null);
+  const [content, setContent] = useState([]);
+  const [isLoadingBlogs, setIsLoadingBlogs] = useState(true); // Loading state for blogs only
 
-  // Categories for women's health issues
   const categories = [
     { id: "all", name: "All Topics" },
     { id: "menopause", name: "Menopause" },
@@ -36,9 +61,8 @@ const ReproductivePhenomenas = () => {
     { id: "pregnancy", name: "Pregnancy" },
   ];
 
-  const [content, setContent] = useState([]);
-
   useEffect(() => {
+    setIsLoadingBlogs(true); // Set loading to true when fetching starts
     fetch("https://women-app.onrender.com/api/reproductivephenomena")
       .then((response) => {
         if (!response.ok) {
@@ -47,66 +71,48 @@ const ReproductivePhenomenas = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("Fetched Data:", data); // Debugging log
-  
+        console.log("Fetched Data:", data);
+
         const mappedData = data.map((item) => {
-          if (!item.imageUrl) {
-            return item; // If no imageUrl, return item as is
-          }
-  
+          if (!item.imageUrl) return item;
+
           let imageUrl = item.imageUrl;
-  
-          if (imageUrl.includes("menstrual1.png")) {
-            imageUrl = menstrual1;
-          } else if (imageUrl.includes("menstrual2.png")) {
-            imageUrl = menstrual2;
-          } else if (imageUrl.includes("menstrual3.png")) {
-            imageUrl = menstrual3;
-          } else if (imageUrl.includes("menstrual4.png")) {
-            imageUrl = menstrual4;
-          } else if (imageUrl.includes("pregnancy1.png")) {
-            imageUrl = pregnancy1;
-          } else if (imageUrl.includes("pregnancy2.png")) {
-            imageUrl = pregnancy2;
-          } else if (imageUrl.includes("pregnancy3.png")) {
-            imageUrl = pregnancy3;
-          } else if (imageUrl.includes("pregnancy4.png")) {
-            imageUrl = pregnancy4;
-          } else if (imageUrl.includes("menopause1.png")) {
-            imageUrl = menopause1;
-          } else if (imageUrl.includes("menopause2.png")) {
-            imageUrl = menopause2;
-          } else if (imageUrl.includes("menopause3.png")) {
-            imageUrl = menopause3;
-          } else {
-            console.warn("No matching image for:", item.imageUrl);
-          }
-  
-          return {
-            ...item,
-            imageUrl,
-          };
+          if (imageUrl.includes("menstrual1.png")) imageUrl = menstrual1;
+          else if (imageUrl.includes("menstrual2.png")) imageUrl = menstrual2;
+          else if (imageUrl.includes("menstrual3.png")) imageUrl = menstrual3;
+          else if (imageUrl.includes("menstrual4.png")) imageUrl = menstrual4;
+          else if (imageUrl.includes("pregnancy1.png")) imageUrl = pregnancy1;
+          else if (imageUrl.includes("pregnancy2.png")) imageUrl = pregnancy2;
+          else if (imageUrl.includes("pregnancy3.png")) imageUrl = pregnancy3;
+          else if (imageUrl.includes("pregnancy4.png")) imageUrl = pregnancy4;
+          else if (imageUrl.includes("menopause1.png")) imageUrl = menopause1;
+          else if (imageUrl.includes("menopause2.png")) imageUrl = menopause2;
+          else if (imageUrl.includes("menopause3.png")) imageUrl = menopause3;
+          else console.warn("No matching image for:", item.imageUrl);
+
+          return { ...item, imageUrl };
         });
-  
+
         setContent(mappedData);
+        setIsLoadingBlogs(false); // Set loading to false when data is fetched
       })
-      .catch((error) => console.error("Error fetching data:", error));
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setIsLoadingBlogs(false); // Set loading to false even if there's an error
+      });
   }, []);
 
-  // Filter content based on search, category, and tab
   const filteredContent = content.filter((item) => {
     const matchesSearch =
       item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.author.toLowerCase().includes(searchQuery.toLowerCase());
-
     const matchesCategory =
       activeCategory === "all" || item.category === activeCategory;
-
     const matchesTab = activeTab === "all" || item.type === activeTab;
-
     return matchesSearch && matchesCategory && matchesTab;
   });
+
   const featuredResources = [
     {
       id: 7,
@@ -117,7 +123,7 @@ const ReproductivePhenomenas = () => {
       duration: "5:20",
       date: "2020-06-18",
       description:
-        "Ovulation kit is a must have accessory at home when you are planning to have a baby. An ovulation test helps you understand your most fertile days.",
+        "Ovulation kit is a must have accessory at home when you are planning to have a baby.",
       url: "https://youtu.be/7Li4XLKEu1g",
       videoId: "7Li4XLKEu1g",
     },
@@ -130,7 +136,7 @@ const ReproductivePhenomenas = () => {
       duration: "3:46",
       date: "2023-02-14",
       description:
-        "Learn how hormones and mood change during menstrual cycle and the effect of periods in girls' bodies, in this 3:46 minute long video lesson. The menstrual cycle, beginning around age 9 to 13, invo",
+        "Learn how hormones and mood change during menstrual cycle.",
       url: "https://youtu.be/wtxQRuEmgyM",
       videoId: "wtxQRuEmgyM",
     },
@@ -138,48 +144,35 @@ const ReproductivePhenomenas = () => {
 
   function generateAllThumbnails(contents) {
     const thumbnails = {};
-  
     contents.forEach((item) => {
       const key = `${item.type}${item.id}`;
-      
-      // Handle different content types
-      if (item.type === 'video' && item.videoId) {
+      if (item.type === "video" && item.videoId) {
         thumbnails[key] = `https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`;
-      } else if (item.type === 'blog' && item.imageUrl) {
+      } else if (item.type === "blog" && item.imageUrl) {
         thumbnails[key] = item.imageUrl;
-      } else if (item.type === 'article' && item.imageUrl) {
+      } else if (item.type === "article" && item.imageUrl) {
         thumbnails[key] = item.imageUrl;
       }
     });
-  
     return thumbnails;
   }
-  
-  // Generate the thumbnails
+
   const allThumbnails = generateAllThumbnails(content);
-  
-  // Now add the thumbnails to the content array
   content.forEach((item) => {
     if (item.id && item.type) {
       item.thumbnail = allThumbnails[`${item.type}${item.id}`];
     }
   });
-  // Filter featured resources
+
   const filteredFeatured = featuredResources.filter((item) => {
     const matchesSearch =
       item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.author.toLowerCase().includes(searchQuery.toLowerCase());
-
-    const matchesCategory =
-      activeCategory === "all" || item.category === activeCategory;
-
     const matchesTab = activeTab === "all" || item.type === activeTab;
-
-    return matchesSearch && matchesCategory && matchesTab;
+    return matchesSearch && matchesTab; 
   });
-
-  // Content type icon mapping
+  
   const getTypeIcon = (type) => {
     switch (type) {
       case "video":
@@ -193,10 +186,8 @@ const ReproductivePhenomenas = () => {
     }
   };
 
-  // Modal for viewing content
   const Modal = ({ content, onClose }) => {
     if (!content) return null;
-
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
         <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
@@ -210,7 +201,6 @@ const ReproductivePhenomenas = () => {
                 <X className="w-6 h-6" />
               </button>
             </div>
-
             {content.type === "video" ? (
               <div className="mb-4 relative pt-[56.25%] w-full">
                 <iframe
@@ -230,7 +220,6 @@ const ReproductivePhenomenas = () => {
                 />
               </div>
             )}
-
             <div className="flex items-center gap-3 text-sm text-gray-600 mb-4">
               <span className="font-medium">{content.author}</span>
               <span>•</span>
@@ -249,9 +238,7 @@ const ReproductivePhenomenas = () => {
                 </>
               )}
             </div>
-
             <p className="text-gray-700 mb-6">{content.description}</p>
-
             <div className="flex justify-between items-center mb-6">
               <button
                 onClick={onClose}
@@ -259,7 +246,6 @@ const ReproductivePhenomenas = () => {
               >
                 Close
               </button>
-
               <a
                 href={content.url}
                 target="_blank"
@@ -277,24 +263,20 @@ const ReproductivePhenomenas = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br ">
-    
-     
-      {/* Main Content */}
+    <div className="min-h-screen bg-gradient-to-br">
       <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 ml-[220px]">
-        {/* Featured Resources Section */}
         <h1 className="text-3xl font-bold text-purple-700 mb-4 text-left">
           Reproductive Health
         </h1>
+
+        {/* Featured Resources Section (No Loading Effect) */}
         {filteredFeatured.length > 0 && (
           <div className="mb-8">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-purple-800">
                 Featured Resources
               </h2>
-             
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {filteredFeatured.map((item) => (
                 <div
@@ -302,24 +284,14 @@ const ReproductivePhenomenas = () => {
                   className="rounded-lg overflow-hidden cursor-pointer shadow-lg transition hover:shadow-xl"
                   onClick={() => setModalContent(item)}
                 >
-                  <div
-                    className="relative h-full"
-                    style={{ minHeight: "280px" }}
-                  >
-                    {/* Background image */}
+                  <div className="relative h-full" style={{ minHeight: "280px" }}>
                     <img
                       src={`https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
                       alt={item.title}
                       className="absolute inset-0 w-full h-full object-cover"
                     />
-
-                    {/* Purple gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-purple-700 via-purple-500 to-transparent opacity-50"></div>
-
-                    {/* Add a dark gradient at the bottom for better text readability */}
                     <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent opacity-30"></div>
-
-                    {/* Video play button for video content */}
                     {item.type === "video" && (
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="rounded-full bg-white bg-opacity-80 p-4">
@@ -327,18 +299,11 @@ const ReproductivePhenomenas = () => {
                         </div>
                       </div>
                     )}
-
-                    {/* Content positioned at the bottom */}
                     <div className="absolute inset-x-0 bottom-0 p-6 text-white z-10">
-                      {/* Content type badge */}
                       <div className="uppercase text-xs font-bold tracking-wider mb-2 bg-purple-600 bg-opacity-60 inline-block px-2 py-1 rounded-sm">
                         {item.type}
                       </div>
-
-                      {/* Title */}
                       <h3 className="font-bold text-2xl mb-2">{item.title}</h3>
-
-                      {/* Author and read time or duration */}
                       <div className="text-sm mb-2">
                         {item.author} •{" "}
                         {item.type === "video" ? item.duration : item.readTime}
@@ -351,7 +316,7 @@ const ReproductivePhenomenas = () => {
           </div>
         )}
 
-        {/* Search Bar */}
+        {/* Search Bar (No Loading Effect) */}
         <div className="relative mb-8">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-gray-400" />
@@ -365,7 +330,7 @@ const ReproductivePhenomenas = () => {
           />
         </div>
 
-        {/* Categories */}
+        {/* Categories (No Loading Effect) */}
         <div className="mb-8 overflow-x-auto">
           <div className="flex space-x-2 pb-2">
             {categories.map((category) => (
@@ -384,7 +349,7 @@ const ReproductivePhenomenas = () => {
           </div>
         </div>
 
-        {/* Content Type Tabs */}
+        {/* Content Type Tabs (No Loading Effect) */}
         <div className="border-b border-gray-200 mb-8">
           <div className="flex space-x-8">
             <button
@@ -433,8 +398,10 @@ const ReproductivePhenomenas = () => {
           </div>
         </div>
 
-        {/* Content Grid */}
-        {filteredContent.length > 0 ? (
+        {/* Blog Content Section (With Loading Effect) */}
+        {isLoadingBlogs ? (
+          <BlogSkeleton />
+        ) : filteredContent.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredContent.map((item) => (
               <div
@@ -444,8 +411,8 @@ const ReproductivePhenomenas = () => {
               >
                 <div className="relative">
                   <img
-                    src={item.thumbnail}
-                    alt={item.title}
+                    src={item.thumbnail || "default-thumbnail.jpg"}
+                    alt={item.title || "No title available"}
                     className="w-full h-48 object-cover"
                   />
                   {item.type === "video" && (
@@ -462,27 +429,23 @@ const ReproductivePhenomenas = () => {
                 <div className="p-4">
                   <div className="flex items-center text-xs text-gray-500 mb-2">
                     <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded">
-                      {categories.find((cat) => cat.id === item.category)?.name}
+                      {categories.find((cat) => cat.id === item.category)?.name || "Uncategorized"}
                     </span>
                     <span className="mx-2">•</span>
                     <span>
-                      {item.type === "video" ? item.duration : item.readTime}
+                      {item.type === "video" ? item.duration || "N/A" : item.readTime || "N/A"}
                     </span>
                   </div>
                   <h3 className="font-bold text-lg mb-2 text-gray-800">
-                    {item.title}
+                    {item.title || "Untitled"}
                   </h3>
                   <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                    {item.description}
+                    {item.description || "No description available."}
                   </p>
                   <div className="flex justify-between items-center">
-                    <span className="text-xs text-gray-500">{item.date}</span>
+                    <span className="text-xs text-gray-500">{item.date || "Unknown Date"}</span>
                     <div className="flex items-center text-purple-600 text-sm font-medium">
-                      {item.type === "video" ? (
-                        <span>Watch now</span>
-                      ) : (
-                        <span>Read more</span>
-                      )}
+                      {item.type === "video" ? <span>Watch now</span> : <span>Read more</span>}
                       <ChevronRight className="w-4 h-4 ml-1" />
                     </div>
                   </div>
@@ -492,9 +455,7 @@ const ReproductivePhenomenas = () => {
           </div>
         ) : (
           <div className="text-center py-10">
-            <p className="text-gray-500 text-lg">
-              No content found matching your criteria.
-            </p>
+            <p className="text-gray-500 text-lg">No content found matching your criteria.</p>
             <button
               onClick={() => {
                 setActiveCategory("all");
@@ -508,8 +469,6 @@ const ReproductivePhenomenas = () => {
           </div>
         )}
       </main>
-
-      {/* Modal */}
       <Modal content={modalContent} onClose={() => setModalContent(null)} />
     </div>
   );

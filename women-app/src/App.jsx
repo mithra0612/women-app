@@ -33,7 +33,7 @@ import Reproductives from "./pages/homepage/reproductive";
 import Breasts from "./pages/homepage/breast";
 import Mentals from "./pages/homepage/mental";
 import Menopauses from "./pages/homepage/menopause";
-import FloatingChatbot from "./pages/homepage/FloatingChatbot";
+// import FloatingChatbot from "./pages/homepage/FloatingChatbot";
 
 function App() {
   const location = useLocation();
@@ -97,7 +97,7 @@ function App() {
           <Route path="/disposals/recycle" element={<Recycles />} />
         </Routes>
       </div>
-      {location.pathname !== "/" && <FloatingChatbot/>}  {/* Hide chatbot on homepage */}
+      {/* {location.pathname !== "/" && <FloatingChatbot/>}  Hide chatbot on homepage */}
     </div>
   );
 }
