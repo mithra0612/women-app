@@ -8,6 +8,7 @@ import {
   X,
   Star,
   ArrowRight,
+  ChevronLeft,
 } from "lucide-react";
 import Article1 from "../../assets/article1.webp";
 import Article2 from "../../assets/article2.jpg";
@@ -24,6 +25,8 @@ const Blogs = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
   const [modalContent, setModalContent] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6; // Number of items to display per page
 
   // Categories for health issues
   const categories = [
@@ -159,6 +162,19 @@ const Blogs = () => {
     return matchesSearch && matchesTab;
   });
 
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredContent.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredContent.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Handle page change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    // Scroll back to top when changing pages
+    window.scrollTo(0, 0);
+  };
+
   // Content type icon mapping
   const getTypeIcon = (type) => {
     switch (type) {
@@ -252,6 +268,101 @@ const Blogs = () => {
             </div>
           </div>
         </div>
+      </div>
+    );
+  };
+
+  // Pagination component
+  const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+    // Determine the range of page numbers to display
+    const pageNumbers = [];
+    const maxPagesToShow = 5;
+
+    let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+    let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+
+    // Adjust if we're near the end
+    if (endPage - startPage + 1 < maxPagesToShow) {
+      startPage = Math.max(1, endPage - maxPagesToShow + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(i);
+    }
+
+    return (
+      <div className="flex justify-center items-center space-x-2 mt-8">
+        <button
+          onClick={() => onPageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className={`p-2 rounded-lg ${
+            currentPage === 1
+              ? "text-gray-400 cursor-not-allowed"
+              : "text-purple-600 hover:bg-purple-100"
+          }`}
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        {startPage > 1 && (
+          <>
+            <button
+              onClick={() => onPageChange(1)}
+              className={`px-3 py-1 rounded-lg ${
+                currentPage === 1
+                  ? "bg-purple-600 text-white"
+                  : "text-purple-600 hover:bg-purple-100"
+              }`}
+            >
+              1
+            </button>
+            {startPage > 2 && <span className="text-gray-500">...</span>}
+          </>
+        )}
+
+        {pageNumbers.map((number) => (
+          <button
+            key={number}
+            onClick={() => onPageChange(number)}
+            className={`px-3 py-1 rounded-lg ${
+              currentPage === number
+                ? "bg-purple-600 text-white"
+                : "text-purple-600 hover:bg-purple-100"
+            }`}
+          >
+            {number}
+          </button>
+        ))}
+
+        {endPage < totalPages && (
+          <>
+            {endPage < totalPages - 1 && (
+              <span className="text-gray-500">...</span>
+            )}
+            <button
+              onClick={() => onPageChange(totalPages)}
+              className={`px-3 py-1 rounded-lg ${
+                currentPage === totalPages
+                  ? "bg-purple-600 text-white"
+                  : "text-purple-600 hover:bg-purple-100"
+              }`}
+            >
+              {totalPages}
+            </button>
+          </>
+        )}
+
+        <button
+          onClick={() => onPageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className={`p-2 rounded-lg ${
+            currentPage === totalPages
+              ? "text-gray-400 cursor-not-allowed"
+              : "text-purple-600 hover:bg-purple-100"
+          }`}
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
       </div>
     );
   };
@@ -356,6 +467,7 @@ const Blogs = () => {
                 key={category.id}
                 onClick={() => {
                   setActiveCategory(category.id);
+                  setCurrentPage(1); // Reset to first page when changing category
                 }}
                 className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors ${
                   activeCategory === category.id
@@ -375,6 +487,7 @@ const Blogs = () => {
             <button
               onClick={() => {
                 setActiveTab("all");
+                setCurrentPage(1); // Reset to first page when changing tab
               }}
               className={`py-4 px-1 border-b-2 font-medium text-sm ${
                 activeTab === "all"
@@ -387,6 +500,7 @@ const Blogs = () => {
             <button
               onClick={() => {
                 setActiveTab("article");
+                setCurrentPage(1); // Reset to first page when changing tab
               }}
               className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center ${
                 activeTab === "article"
@@ -400,6 +514,7 @@ const Blogs = () => {
             <button
               onClick={() => {
                 setActiveTab("blog");
+                setCurrentPage(1); // Reset to first page when changing tab
               }}
               className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center ${
                 activeTab === "blog"
@@ -413,6 +528,7 @@ const Blogs = () => {
             <button
               onClick={() => {
                 setActiveTab("video");
+                setCurrentPage(1); // Reset to first page when changing tab
               }}
               className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center ${
                 activeTab === "video"
@@ -426,11 +542,11 @@ const Blogs = () => {
           </div>
         </div>
 
-        {/* Content Grid - Show all filtered content without pagination */}
-        {filteredContent.length > 0 ? (
+        {/* Content Grid */}
+        {currentItems.length > 0 ? (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredContent.map((item) => (
+              {currentItems.map((item) => (
                 <div
                   key={item.id}
                   className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition cursor-pointer"
@@ -487,6 +603,22 @@ const Blogs = () => {
                 </div>
               ))}
             </div>
+
+            {/* Pagination controls */}
+            {totalPages > 1 && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            )}
+
+            {/* Results counter */}
+            <div className="text-center text-sm text-gray-500 mt-4">
+              Showing {indexOfFirstItem + 1}-
+              {Math.min(indexOfLastItem, filteredContent.length)} of{" "}
+              {filteredContent.length} results
+            </div>
           </>
         ) : (
           <div className="text-center py-10">
@@ -498,6 +630,7 @@ const Blogs = () => {
                 setActiveCategory("all");
                 setActiveTab("all");
                 setSearchQuery("");
+                setCurrentPage(1);
               }}
               className="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition"
             >

@@ -61,8 +61,6 @@ function App() {
           <Route path="/pregnancy-tracker" element={<PregnancyTrackers />} />
           <Route path="/remedies" element={<Remedies />} />
           <Route path="/ai-diet" element={<Chatbot />} />  
-          
-          {/* Spinner and its Subcategories */}
           <Route path="/spinner" element={<Spinners />} />
 
           {/* Additional routes for direct access */}
@@ -105,4 +103,3 @@ function App() {
 }
 
 export default App;
-

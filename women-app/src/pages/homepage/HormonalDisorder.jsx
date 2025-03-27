@@ -8,6 +8,7 @@ import {
   X,
   Star,
   ArrowRight,
+  ChevronLeft,
 } from "lucide-react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import o1 from "../../assets/HormonalDisorders/o1.png";
@@ -24,12 +25,89 @@ import menopause1 from "../../assets/reproductivePhenomena/menopause1.png";
 import menopause2 from "../../assets/reproductivePhenomena/menopause2.png";
 import menopause3 from "../../assets/reproductivePhenomena/menopause3.png";
 
+// Pagination component
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+  // Determine the range of page numbers to display
+  const pageNumbers = [];
+  const maxPagesToShow = 5;
+  
+  let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+  let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+  
+  // Adjust if we're near the end
+  if (endPage - startPage + 1 < maxPagesToShow) {
+    startPage = Math.max(1, endPage - maxPagesToShow + 1);
+  }
+  
+  for (let i = startPage; i <= endPage; i++) {
+    pageNumbers.push(i);
+  }
+  
+  return (
+    <div className="flex justify-center items-center space-x-2 mt-8">
+      <button 
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        className={`p-2 rounded-lg ${currentPage === 1 ? 'text-gray-400 cursor-not-allowed' : 'text-purple-600 hover:bg-purple-100'}`}
+      >
+        <ChevronLeft className="w-5 h-5" />
+      </button>
+      
+      {startPage > 1 && (
+        <>
+          <button 
+            onClick={() => onPageChange(1)}
+            className={`px-3 py-1 rounded-lg ${currentPage === 1 ? 'bg-purple-600 text-white' : 'text-purple-600 hover:bg-purple-100'}`}
+          >
+            1
+          </button>
+          {startPage > 2 && <span className="text-gray-500">...</span>}
+        </>
+      )}
+      
+      {pageNumbers.map(number => (
+        <button
+          key={number}
+          onClick={() => onPageChange(number)}
+          className={`px-3 py-1 rounded-lg ${currentPage === number ? 'bg-purple-600 text-white' : 'text-purple-600 hover:bg-purple-100'}`}
+        >
+          {number}
+        </button>
+      ))}
+      
+      {endPage < totalPages && (
+        <>
+          {endPage < totalPages - 1 && <span className="text-gray-500">...</span>}
+          <button 
+            onClick={() => onPageChange(totalPages)}
+            className={`px-3 py-1 rounded-lg ${currentPage === totalPages ? 'bg-purple-600 text-white' : 'text-purple-600 hover:bg-purple-100'}`}
+          >
+            {totalPages}
+          </button>
+        </>
+      )}
+      
+      <button 
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className={`p-2 rounded-lg ${currentPage === totalPages ? 'text-gray-400 cursor-not-allowed' : 'text-purple-600 hover:bg-purple-100'}`}
+      >
+        <ChevronRight className="w-5 h-5" />
+      </button>
+    </div>
+  );
+};
+
+// Mapping of image names to imports
+
 const HormonalDisorders = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
   const [modalContent, setModalContent] = useState(null);
-  const [content, setContent] = useState([]);
+  // Add pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6; // Number of cards per page
 
   // Categories for women's health issues
   const categories = [
@@ -39,7 +117,7 @@ const HormonalDisorders = () => {
     { id: "hormonal-imbalances", name: "Hormonal Imbalances" },
     { id: "thyroid", name: "Thyroid Disorders" },
   ];
-  
+  const [content, setContent] = useState([]);
   useEffect(() => {
     fetch("http://localhost:5000/api/hormonaldisorders")
       .then((response) => {
@@ -114,6 +192,27 @@ const HormonalDisorders = () => {
     return matchesSearch && matchesCategory && matchesTab;
   });
 
+  // Reset to first page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, activeCategory, activeTab]);
+
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredContent.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredContent.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Handle page change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    // Scroll to top of content section
+    window.scrollTo({
+      top: document.querySelector('.content-grid').offsetTop - 20,
+      behavior: 'smooth'
+    });
+  };
+
   const featuredResources = [
     {
       id: 11,
@@ -176,7 +275,21 @@ const HormonalDisorders = () => {
       item.thumbnail = allThumbnails[`${item.type}${item.id}`];
     }
   });
-  
+  // Filter featured resources
+  const filteredFeatured = featuredResources.filter((item) => {
+    const matchesSearch =
+      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.author.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesCategory =
+      activeCategory === "all" || item.category === activeCategory;
+
+    const matchesTab = activeTab === "all" || item.type === activeTab;
+
+    return matchesSearch && matchesCategory && matchesTab;
+  });
+
   // Content type icon mapping
   const getTypeIcon = (type) => {
     switch (type) {
@@ -283,67 +396,69 @@ const HormonalDisorders = () => {
         <h1 className="text-3xl font-bold text-purple-700 mb-4 text-left">Hormonal Disorders</h1>
         
         {/* Featured Resources Section */}
-        <div className="mb-8">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold text-purple-800">
-              Featured Resources
-            </h2>
-          </div>
+        {filteredFeatured.length > 0 && (
+          <div className="mb-8">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-purple-800">
+                Featured Resources
+              </h2>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {featuredResources.map((item) => (
-              <div
-                key={item.id}
-                className="rounded-lg overflow-hidden cursor-pointer shadow-lg transition hover:shadow-xl"
-                onClick={() => setModalContent(item)}
-              >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {filteredFeatured.map((item) => (
                 <div
-                  className="relative h-full"
-                  style={{ minHeight: "280px" }}
+                  key={item.id}
+                  className="rounded-lg overflow-hidden cursor-pointer shadow-lg transition hover:shadow-xl"
+                  onClick={() => setModalContent(item)}
                 >
-                  {/* Background image */}
-                  <img
-                    src={`https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
-                    alt={item.title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
+                  <div
+                    className="relative h-full"
+                    style={{ minHeight: "280px" }}
+                  >
+                    {/* Background image */}
+                    <img
+                      src={`https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
+                      alt={item.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
 
-                  {/* Purple gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-purple-600 via-purple-300 to-transparent opacity-50"></div>
+                    {/* Purple gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-purple-600 via-purple-300 to-transparent opacity-50"></div>
 
-                  {/* Add a dark gradient at the bottom for better text readability */}
-                  <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent opacity-30"></div>
+                    {/* Add a dark gradient at the bottom for better text readability */}
+                    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent opacity-30"></div>
 
-                  {/* Video play button for video content */}
-                  {item.type === "video" && (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="rounded-full bg-white bg-opacity-80 p-4">
-                        <Play className="w-10 h-10 text-purple-700" />
+                    {/* Video play button for video content */}
+                    {item.type === "video" && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="rounded-full bg-white bg-opacity-80 p-4">
+                          <Play className="w-10 h-10 text-purple-700" />
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
 
-                  {/* Content positioned at the bottom */}
-                  <div className="absolute inset-x-0 bottom-0 p-6 text-white z-10">
-                    {/* Content type badge */}
-                    <div className="uppercase text-xs font-bold tracking-wider mb-2 bg-purple-600 bg-opacity-60 inline-block px-2 py-1 rounded-sm">
-                      {item.type}
-                    </div>
+                    {/* Content positioned at the bottom */}
+                    <div className="absolute inset-x-0 bottom-0 p-6 text-white z-10">
+                      {/* Content type badge */}
+                      <div className="uppercase text-xs font-bold tracking-wider mb-2 bg-purple-600 bg-opacity-60 inline-block px-2 py-1 rounded-sm">
+                        {item.type}
+                      </div>
 
-                    {/* Title */}
-                    <h3 className="font-bold text-2xl mb-2">{item.title}</h3>
+                      {/* Title */}
+                      <h3 className="font-bold text-2xl mb-2">{item.title}</h3>
 
-                    {/* Author and read time or duration */}
-                    <div className="text-sm mb-2">
-                      {item.author} •{" "}
-                      {item.type === "video" ? item.duration : item.readTime}
+                      {/* Author and read time or duration */}
+                      <div className="text-sm mb-2">
+                        {item.author} •{" "}
+                        {item.type === "video" ? item.duration : item.readTime}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Search Bar */}
         <div className="relative mb-8">
@@ -429,61 +544,72 @@ const HormonalDisorders = () => {
 
         {/* Content Grid */}
         {filteredContent.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 content-grid">
-            {filteredContent.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition cursor-pointer"
-                onClick={() => setModalContent(item)}
-              >
-                <div className="relative">
-                  <img
-                    src={item.thumbnail}
-                    alt={item.title}
-                    className="w-full h-48 object-cover"
-                  />
-                  {item.type === "video" && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
-                      <div className="rounded-full bg-white bg-opacity-80 p-3">
-                        <Play className="w-8 h-8 text-purple-700" />
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 content-grid">
+              {currentItems.map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition cursor-pointer"
+                  onClick={() => setModalContent(item)}
+                >
+                  <div className="relative">
+                    <img
+                      src={item.thumbnail}
+                      alt={item.title}
+                      className="w-full h-48 object-cover"
+                    />
+                    {item.type === "video" && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
+                        <div className="rounded-full bg-white bg-opacity-80 p-3">
+                          <Play className="w-8 h-8 text-purple-700" />
+                        </div>
+                      </div>
+                    )}
+                    <div className="absolute top-2 right-2 bg-purple-600 text-white text-xs px-2 py-1 rounded-full">
+                      {item.type.charAt(0).toUpperCase() + item.type.slice(1)}
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <div className="flex items-center text-xs text-gray-500 mb-2">
+                      <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded">
+                        {categories.find((cat) => cat.id === item.category)?.name || item.category}
+                      </span>
+                      <span className="mx-2">•</span>
+                      <span>
+                        {item.type === "video" ? item.duration : item.readTime}
+                      </span>
+                    </div>
+                    <h3 className="font-bold text-lg mb-2 text-gray-800">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                      {item.description}
+                    </p>
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs text-gray-500">{item.date}</span>
+                      <div className="flex items-center text-purple-600 text-sm font-medium">
+                        {item.type === "video" ? (
+                          <span>Watch now</span>
+                        ) : (
+                          <span>Read more</span>
+                        )}
+                        <ChevronRight className="w-4 h-4 ml-1" />
                       </div>
                     </div>
-                  )}
-                  <div className="absolute top-2 right-2 bg-purple-600 text-white text-xs px-2 py-1 rounded-full">
-                    {item.type.charAt(0).toUpperCase() + item.type.slice(1)}
                   </div>
                 </div>
-                <div className="p-4">
-                  <div className="flex items-center text-xs text-gray-500 mb-2">
-                    <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded">
-                      {categories.find((cat) => cat.id === item.category)?.name || item.category}
-                    </span>
-                    <span className="mx-2">•</span>
-                    <span>
-                      {item.type === "video" ? item.duration : item.readTime}
-                    </span>
-                  </div>
-                  <h3 className="font-bold text-lg mb-2 text-gray-800">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                    {item.description}
-                  </p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs text-gray-500">{item.date}</span>
-                    <div className="flex items-center text-purple-600 text-sm font-medium">
-                      {item.type === "video" ? (
-                        <span>Watch now</span>
-                      ) : (
-                        <span>Read more</span>
-                      )}
-                      <ChevronRight className="w-4 h-4 ml-1" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+            
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <Pagination 
+                currentPage={currentPage} 
+                totalPages={totalPages} 
+                onPageChange={handlePageChange}
+              />
+            )}
+          </>
         ) : (
           <div className="text-center py-10">
             <p className="text-gray-500 text-lg">

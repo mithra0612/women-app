@@ -1,20 +1,9 @@
+// server.js or index.js
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
 const axios = require("axios");
 require("dotenv").config();
-
-// Import all Mongoose models
-const Maternal = require("./Models/Maternal"); 
-const Blogs = require("./Models/Blogs");
-const Cancer = require("./Models/Cancer");
-const HormonalDisorder = require("./Models/HormonalDisorder");
-const ReproductiveDisorder = require("./Models/ReproductiveDisorders");
-const ReproductivePhenomena = require("./Models/ReproductivePhenomena");
-const SexualIntimate = require("./Models/SexualIntimate");
-const Schemes = require("./Models/Schemes");
-
-// Gemini AI import
+const { db } = require("./config/firebaseConfig.js");
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 // Initialize Express app
@@ -25,111 +14,77 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cors());
 
-// Connect to MongoDB
-mongoose
-  .connect('mongodb://localhost:27017/Blog', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB connection error:", err));
-
-// Initialize Gemini AI (from first code)
-const genAI = new GoogleGenerativeAI('AIzaSyB99Sd3oSU1NdjYbG6AXizqJJ4uvDspLEg');
+const genAI = new GoogleGenerativeAI('AIzaSyCDegbtemKUx5sA2OoTIcOqwjEQXcu-QvU');
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-// Gemini API details (from second code)
-const GEMINI_2_API_KEY = "AIzaSyBcmdSino5nfSwjB99RJ67mw55wkf-UyZQ";  
+const GEMINI_2_API_KEY = "AIzaSyCDegbtemKUx5sA2OoTIcOqwjEQXcu-QvU";  
 const GEMINI_2_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_2_API_KEY}`;
 
-// Database Content Routes
+// Helper function using Admin SDK
+const fetchCollectionData = async (collectionName) => {
+  const snapshot = await db.collection(collectionName).get();
+  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+};
+
 app.get("/api/maternal", async (req, res) => {
   try {
-    const maternalContent = await Maternal.find();
+    const maternalContent = await fetchCollectionData("maternal");
     res.json(maternalContent);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
-
-app.get("/api/blogs", async (req, res) => {
-  try {
-    const blogContent = await Blogs.find();
-    res.json(blogContent);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
 app.get("/api/cancer", async (req, res) => {
   try {
-    const blogContent = await Cancer.find();
-    res.json(blogContent);
+    const maternalContent = await fetchCollectionData("cancer");
+    res.json(maternalContent);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
-
-app.get('/api/hormonaldisorders', async (req, res) => {
+app.get("/api/reproductivephenomena", async (req, res) => {
   try {
-    const hormonaldisorder = await HormonalDisorder.find();
-    res.json(hormonaldisorder);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const maternalContent = await fetchCollectionData("reproductivephenomena");
+    res.json(maternalContent);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
-
-app.get('/api/reproductivedisorders', async (req, res) => {
+app.get("/api/reproductivedisorders", async (req, res) => {
   try {
-    const reproductivedisorders = await ReproductiveDisorder.find();
-    res.json(reproductivedisorders);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const maternalContent = await fetchCollectionData("reproductivedisorders");
+    res.json(maternalContent);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
-
-app.get('/api/reproductivephenomena', async (req, res) => {
+app.get("/api/blogs", async (req, res) => {
   try {
-    const reproductivephenomena = await ReproductivePhenomena.find();
-    res.json(reproductivephenomena);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const maternalContent = await fetchCollectionData("blogData");
+    res.json(maternalContent);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
-
-app.get('/api/sexualintimate', async (req, res) => {
+app.get("/api/schemes", async (req, res) => {
   try {
-    const sexualintimate = await SexualIntimate.find();
-    res.json(sexualintimate);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const maternalContent = await fetchCollectionData("schemes");
+    res.json(maternalContent);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
-
-app.get('/api/schemes', async (req, res) => {
+app.get("/api/hormonaldisorders", async (req, res) => {
   try {
-    const schemes = await Schemes.find();
-    res.json(schemes);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const maternalContent = await fetchCollectionData("hormonaldisorder");
+    res.json(maternalContent);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
-
-// Gemini-1.5 API Routes (from first code)
-app.post("/chat", async (req, res) => {
+app.get("/api/sexualIntimate", async (req, res) => {
   try {
-    const chatHistory = req.body.history || [];
-    const msg = req.body.chat;
-    
-    const chat = model.startChat({
-      history: chatHistory
-    });
-
-    const result = await chat.sendMessage(msg);
-    const response = await result.response;
-    const text = response.text();
-
-    res.send({ "text": text });
+    const maternalContent = await fetchCollectionData("sexualIntimate");
+    res.json(maternalContent);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -209,7 +164,7 @@ app.get("/api/hospitals", async (req, res) => {
         filter: `circle:${lon},${lat},5000`, // 5km radius
         bias: `proximity:${lon},${lat}`,
         limit: 10,
-        apiKey: process.env.GEOAPIFY_API_KEY, // Store your Geoapify API Key in .env
+        apiKey: "0933c3dd7c6e478f81174d677ec85080", // Store your Geoapify API Key in .env
       },
     });
 

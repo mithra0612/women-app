@@ -786,7 +786,7 @@ const LandingPage = () => {
                           whileTap={{ scale: 0.97 }}
                           className="relative overflow-hidden group bg-white text-purple-700 py-3 px-8 rounded-lg font-semibold shadow-lg flex items-center justify-center w-full sm:w-auto"
                         >
-                          <span className="relative z-10">Create Account</span>
+                          <span className="relative z-10">Get Started</span>
                           <motion.span 
                             className="absolute inset-0 bg-gradient-to-r from-purple-100 to-purple-200"
                             initial={{ x: '-100%' }}
@@ -900,43 +900,9 @@ const LandingPage = () => {
               <p className="mb-6 max-w-md">
                 Empowering women through culturally relevant health information, AI tools, and access to government resources.
               </p>
-              <div className="flex space-x-4">
-                <a href="#" className="text-white hover:text-purple-300">
-                  <span className="sr-only">Twitter</span>
-                  {/* Twitter Icon */}
-                </a>
-                <a href="#" className="text-white hover:text-purple-300">
-                  <span className="sr-only">Instagram</span>
-                  {/* Instagram Icon */}
-                </a>
-                <a href="#" className="text-white hover:text-purple-300">
-                  <span className="sr-only">Facebook</span>
-                  {/* Facebook Icon */}
-                </a>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-4">Resources</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white">Health Education</a></li>
-                <li><a href="#" className="hover:text-white">Cycle Tracking</a></li>
-                <li><a href="#" className="hover:text-white">Government Schemes</a></li>
-                <li><a href="#" className="hover:text-white">Diet Planning</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-4">Company</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white">About Us</a></li>
-                <li><a href="#" className="hover:text-white">Our Mission</a></li>
-                <li><a href="#" className="hover:text-white">Contact</a></li>
-                <li><a href="#" className="hover:text-white">Privacy Policy</a></li>
-              </ul>
+              
             </div>
           </div>
-          
           <div className="border-t border-purple-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p>© 2025 WellCare. All rights reserved.</p>
             <div className="mt-4 md:mt-0">
@@ -950,4 +916,3 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
-

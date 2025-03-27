@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "women-wellness-app",
+  "private_key_id": "3cfe28ce7ac082e0c5bc6c48f948172c997b2c15",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCxsEb7zZlTx4lz\n0TlWbzijKfXhlTMPo6oRvRmd132xeaFPiq2eNWyPdcvD8DrPqKkdjXL10yyGFFyK\nq5HZhr4mJ7cAahpKCeWzfBJ7/yExQ0ZXvNF5OdyaLDmRPHR4gZ8MUw4DIgAudNn7\nZWYQCe7qvf47AD2FVboPb+RvShYKdui4iAeBMR4NBNhMd0+EA5C87Phc7/QgNRJ9\np2/DLomGWlzHU4APE8spK5RbksPrb+Frmi3L3MufoeEXA6YYWv76pnXYIdrCcZQj\nUuV4DtZbrWTwRX8BEfRVBg4uUBlaV/cCo2KoTy1tRfXB9lgn+Rhf50Pk+PY7FzCJ\nC57mNz7BAgMBAAECggEACtfobwmgEZ0nydPy6S/Kn6dqAEEN/4Zz9JbrAydBPgU/\nhzZ9652UQUl1nMCSYDWJU3q8MRz41rpTnulDMmh+/l5WVD3FWq8Rr9MyoBNE0+go\neOZ2jIyvxg9MmIy9SVTUr0h6vo1ywCMEoesxUCmBBV2AkBpuxq4hd3tzL+jwISWA\nLUIZqmfYIWl1w+v1XZ/RcjJ8ZvlCVJ2uCMsGte9aftQfP6LTZqf3oVdLuGnJ3BZp\nBZzMJdBeVdtlm5CGmiiEpLzUiX6AoEoDYBhkJRfcrWwNqOCJRnUHfwqqHs6Rgp+b\nrA8Wb/myeWDAvG8BOoaA5bA7I/aBBWR9Ar8Va58b6QKBgQDkMlDyN/duOhCmNvSU\ntGSAoQPUyBDV0ZCCt/QMiKtF+oqBa9yEtDJc4tITyWR8bS7VXqJyO+0lC0t/sw9T\nqHSCTktUHImhEK8aKLu6i3oAI3WkcT+9iochYS37kIHyXaRZy3qBF07ngP8dWvjn\nZREZOdqWlDsFaBQ4iByLqkmuWQKBgQDHVpDk4MrZ5veb3DD+m7q+JKsdbFOvZNRi\nKrh78mjM2Axfld5/6bIBSToPt0xKXZVt43PpUoBiPgl9nQLA7C8eeWPDdx4N+Q7S\nZtiqohLEZAB5XIxuVqdgHz2S/5GH0GAHt6i9x+GLJyjPMF21icU8d0crSmlmiYsj\n5kSGm2OWqQKBgAlRVKTPTDcf/9YJoGsCAqiN6o4hrS5N5EyyHjD006mD1Wv7b4Gr\nqfLJADL2ojfCbYsg1hk8AS7mCysnsJSF6Fv5vnGsyKHfAIdc6m1vjIe86uzQAv5G\nTcY7JZmECQpQcImKGXJz9TDWv5P/RvKL2erhxd8oJlDOMyUryZ6aUW/hAoGBAJEO\nupQDzTnybJ9cBb9R/fveXTMlIGTTQAZLxkJULdVbJu3r9qUon6N18S18mqTHIzV7\nPl887TYQpQFm35kahlNrzKByL0nFwvZzZxoMpRGLIBkwsvScVGKLeVheaD3n8enL\nyZyJNuT3UygqrxarMf+FYSHsnXTDhKBUMeuuajM5AoGAbF9QcJxuDD2aof619VG7\ncKd0iI9QK8ptllL0Yo1BIwqMmMkPsj/GmbIAy6Ypxmm7EF7ElMo0MvjhTA2/o7gw\nbUcMcXaMZncHspOcDIafU/lrrT/cIbrfjaEeSLAUo3xGSjPzxeZXDZ1m4movteqL\nhLKeRSn92vL115AFOitmrEo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fbsvc@women-wellness-app.iam.gserviceaccount.com",
+  "client_id": "116234663395982238297",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40women-wellness-app.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
