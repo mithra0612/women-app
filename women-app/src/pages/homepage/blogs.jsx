@@ -54,7 +54,7 @@ const Blogs = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/blogs")
+    fetch("https://women-app.onrender.com/api/blogs")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch data");

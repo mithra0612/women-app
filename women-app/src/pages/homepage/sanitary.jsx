@@ -44,6 +44,12 @@ const Sanitarys = () => {
       category: 'Getting Started'
     },
     {
+      id: 'ImzxzlPzbRk',
+      title: 'What should I do when I get my first period?',
+      thumbnail: "https://img.youtube.com/vi/ImzxzlPzbRk/maxresdefault.jpg",
+      category: 'Getting Started'
+    },
+    {
       id: '6UykBMEEtRw',
       title: 'How to Use Tampons',
       thumbnail: "https://img.youtube.com/vi/6UykBMEEtRw/maxresdefault.jpg",
@@ -72,6 +78,36 @@ const Sanitarys = () => {
       title: 'Best period products',
       thumbnail: "https://img.youtube.com/vi/Dgo7oF5Nkoc/maxresdefault.jpg",
       category: 'Wellness Tips'
+    },
+    {
+      id: 'tc94nhKqBfE',
+      title: '5 Tips for periods',
+      thumbnail: "https://img.youtube.com/vi/tc94nhKqBfE/maxresdefault.jpg",
+      category: 'Wellness Tips'
+    },
+    {
+      id: 'UBhiwkM8MIY',
+      title: 'Menstrual Hygiene Basics',
+      thumbnail: "https://img.youtube.com/vi/UBhiwkM8MIY/maxresdefault.jpg",
+      category: 'Getting Started'
+    },
+    {
+      id: 'tU4VCXakbyQ',
+      title: 'How to Choose Period Products',
+      thumbnail: "https://img.youtube.com/vi/tU4VCXakbyQ/maxresdefault.jpg",
+      category: 'Product Types'
+    },
+    {
+      id: 'LIsYbDCMfDc',
+      title: 'Period Pain Relief Tips',
+      thumbnail: "https://img.youtube.com/vi/LIsYbDCMfDc/maxresdefault.jpg",
+      category: 'Wellness Tips'
+    },
+    {
+      id: 'pP7RlM_QpmI',
+      title: 'How to Clean Reusable Period Products',
+      thumbnail: "https://img.youtube.com/vi/pP7RlM_QpmI/maxresdefault.jpg",
+      category: 'How-To Guides'
     }
   ];
 
@@ -123,7 +159,7 @@ const Sanitarys = () => {
       id: 'cups',
       title: 'How to Use Menstrual Cups',
       description: 'Master the techniques for using menstrual cups effectively',
-      image: S1, // Updated from placeholder
+      image: S1,
       color: 'from-green-400 to-teal-500',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -144,7 +180,7 @@ const Sanitarys = () => {
       id: 'period-underwear',
       title: 'How to dispose a used pad',
       description: 'Tips for disposing pads in a correct way',
-      image: I1, // Updated from placeholder
+      image: I1,
       color: 'from-yellow-400 to-orange-500',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">

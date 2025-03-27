@@ -55,7 +55,7 @@ const Maternals = () => {
   const [content, setContent] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/maternal")
+    fetch("https://women-app.onrender.com/api//maternal")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch data");

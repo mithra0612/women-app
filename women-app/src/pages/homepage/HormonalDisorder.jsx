@@ -119,7 +119,7 @@ const HormonalDisorders = () => {
   ];
   const [content, setContent] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/api/hormonaldisorders")
+    fetch("https://women-app.onrender.com/api/hormonaldisorders")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch data");

@@ -39,7 +39,7 @@ const ReproductivePhenomenas = () => {
   const [content, setContent] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/reproductivephenomena")
+    fetch("https://women-app.onrender.com/api/reproductivephenomena")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch data");
